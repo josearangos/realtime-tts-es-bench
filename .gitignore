@@ -1,2 +1,8 @@
 .claude
 .specify
+# voices and weights are never committed (Constitution Principle VI)
+cloned_voices/
+phonon-40m-es/
+*.safetensors
+*.wav
+.venv-*/
