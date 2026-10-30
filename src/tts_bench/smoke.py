@@ -9,7 +9,7 @@ import numpy as np
 
 from . import adapters as _  # noqa: F401
 from .core.registry import get_adapter
-from .core.voices import DirectoryVoiceLibrary
+from .voices import LocalVoiceLibrary
 
 
 
@@ -26,7 +26,7 @@ def main(argv: list[str] | None = None) -> int:
     adapter.load()  # raises with an install/weights hint when unavailable
     try:
         d = adapter.descriptor
-        ref = DirectoryVoiceLibrary(a.voices_dir).resolve(a.voice, d.voice_kind)
+        ref = LocalVoiceLibrary(a.voices_dir).resolve(a.voice, d.voice_kind, engine=d.name)
         res = adapter.synthesize(a.text, ref)
         d = res.descriptor  # reflects the selected voice
         for k, v in asdict(d).items():

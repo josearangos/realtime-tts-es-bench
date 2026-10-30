@@ -11,7 +11,7 @@ uv venv --python 3.11 .venv-piper  && uv pip install -p .venv-piper  -e ".[piper
 ```
 Prerequisites that are not in git (Constitution Principle VI):
 - `phonon-40m-es/`: `huggingface-cli download gradium/phonon-40m-es --local-dir ./phonon-40m-es`
-- `cloned_voices/` with `voices.toml`, the reference WAVs and `valentina.safetensors`
+- `cloned_voices/` voice library with the voices registered (see `docs/voice-preparation.md`; `python -m tts_bench.voices list`)
 - Piper voices: `.venv-piper/bin/python -m piper.download_voices --download-dir cloned_voices es_MX-claude-high es_AR-daniela-high`
 - Pocket TTS cloning needs the gated terms accepted at huggingface.co/kyutai/pocket-tts and `hf auth login`.
 

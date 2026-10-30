@@ -36,3 +36,25 @@ class VoiceNotFoundError(TTSBenchError):
 
 class StreamingNotSupportedError(TTSBenchError):
     pass
+
+
+class ConsentRequiredError(TTSBenchError):
+    pass
+
+
+class ConsentNotPermittedError(TTSBenchError):
+    pass
+
+
+class VoiceEngineMismatchError(TTSBenchError):
+    pass
+
+
+class VoiceIntegrityError(TTSBenchError):
+    def __init__(self, message: str, reason: str):
+        super().__init__(message)
+        self.reason = reason  # "missing" or "modified"
+
+
+class VoiceAlreadyRegisteredError(TTSBenchError):
+    pass

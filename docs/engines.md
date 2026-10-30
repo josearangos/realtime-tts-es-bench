@@ -16,7 +16,7 @@ Reference files (rights purchased by the owner's company; keep the contracts out
 - `es-co-b2-04-emiliano_sample.wav`: voice of an employee of the owner's company; the company purchased the rights to this voice (owner statement, 2026-10-29)
 - `valentina.safetensors`: stored Phonon voice derived from the Valentina reference.
 
-`cloned_voices/voices.toml` (git-ignored) maps voice names to files per voice kind.
+Voices are registered in the git-ignored `cloned_voices/` library and resolved by name (see `docs/voice-preparation.md`).
 
 ## Listening notes (owner, 2026-10-29)
 

@@ -5,7 +5,7 @@ import pytest
 
 from tts_bench.core.errors import EngineNotInstalledError, VoiceNotFoundError, WeightsMissingError
 from tts_bench.core.registry import get_adapter
-from tts_bench.core.voices import DirectoryVoiceLibrary
+from tts_bench.voices import LocalVoiceLibrary
 
 pytestmark = pytest.mark.engine
 
@@ -29,7 +29,9 @@ def test_real_engine_contract(engine, module, voice_name):
         pytest.skip(str(exc))
     try:
         try:
-            ref = DirectoryVoiceLibrary().resolve(voice_name, adapter.descriptor.voice_kind)
+            ref = LocalVoiceLibrary().resolve(
+                voice_name, adapter.descriptor.voice_kind, engine=adapter.descriptor.name
+            )
         except VoiceNotFoundError as exc:
             pytest.skip(str(exc))
         try:

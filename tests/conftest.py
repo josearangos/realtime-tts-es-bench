@@ -5,7 +5,7 @@ from tts_bench.core.voices import VoiceReference
 
 
 class InMemoryVoiceLibrary:
-    def resolve(self, name, kind):
+    def resolve(self, name, kind=None, *, engine=None, use=None, content=None):
         return VoiceReference(name, kind, f"memory://{name}")
 
 

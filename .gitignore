@@ -4,6 +4,9 @@
 cloned_voices/
 phonon-40m-es/
 *.safetensors
+*.onnx
+*.pt
+*.ckpt
 *.wav
 .venv-*/
 
