@@ -6,3 +6,8 @@ phonon-40m-es/
 *.safetensors
 *.wav
 .venv-*/
+
+# python build artifacts
+*.egg-info/
+__pycache__/
+.pytest_cache/

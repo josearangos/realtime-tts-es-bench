@@ -4,7 +4,9 @@ Consumers (metrics, backend, frontend) depend only on this contract.
 
 ```python
 class EngineAdapter(Protocol):
-    descriptor: EngineDescriptor            # static, available before load()
+    descriptor: EngineDescriptor            # available before load(); engine_version is filled at load(),
+                                            # and Piper's voice-dependent fields after the first synthesis.
+                                            # Streaming granularity is always a fixed declaration.
 
     def load(self) -> float: ...
         # Loads weights. Returns load seconds (kept apart from synthesis time).
@@ -24,6 +26,7 @@ class EngineAdapter(Protocol):
 ```
 
 ## Guarantees
+- `SynthesisResult.descriptor` reflects the engine and voice actually used; consumers must record that one.
 - Text is passed unchanged; length over `descriptor.input_limits` raises `InputLimitError` before the engine is called.
 - Audio is never resampled; `sample_rate` is the engine's own.
 - Any engine failure raises `SynthesisError`; no partial result is returned as success.

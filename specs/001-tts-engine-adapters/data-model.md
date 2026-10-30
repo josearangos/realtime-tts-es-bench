@@ -16,6 +16,8 @@
 | input_limits | InputLimits | `max_chars: int or None` |
 | install_hint / weights_hint | str | actionable text (FR-008) |
 
+**Descriptor lifecycle (as built)**: `streaming` and `voice_kind` are fixed constants. `engine_version` is filled in at `load()` (before that it reads `unknown (read at load)`). For Piper, `model_id`, `license_model` and `spanish_variant` follow the selected voice and are updated when the voice is first used, so read the descriptor from `SynthesisResult.descriptor` (taken after synthesis), not only before. A descriptor object is never mutated: the adapter replaces it.
+
 ## StreamingInfo
 `granularity`: `chunk` | `sentence` | `none`. `none` means time to first audio is "not available".
 
