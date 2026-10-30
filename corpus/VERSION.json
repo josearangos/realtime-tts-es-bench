@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "date": "2026-10-29",
+  "counts": {
+    "main": 123,
+    "cloning": 21,
+    "outbound_sales": 42,
+    "collections": 41,
+    "inbound": 40,
+    "total": 144
+  },
+  "content_sha256": "e4fb3b0af339b63f725652dfffd2a2080ce2ec75c36fd7f2425d6915cf4f36a4"
+}
