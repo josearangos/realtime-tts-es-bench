@@ -10,15 +10,23 @@ class LocalVoiceLibrary:
 
     # consent and recordings
     def add_consent(self, record: ConsentRecord) -> None
+    def consent(self, consent_id: str) -> ConsentRecord                      # raises ConsentRequiredError if missing
     def add_recording(self, wav: Path, consent_id: str, accent: str,
-                      no_music_confirmed: bool = False) -> RecordingInfo      # FR-006
+                      no_music_confirmed: bool = False,
+                      noise_threshold_db: float = 20.0) -> RecordingInfo      # FR-006
+    def recording(self, recording_id: str) -> dict
 
     # preparing and registering
+    def segment_for(self, recording_id: str, start_s: float | None,
+                    length_s: float | None) -> dict                            # default {0, min(20, duration)}; needs consent
     def prepare_segment(self, recording_id: str, engine: str,
-                        start_s: float | None = None, length_s: float | None = None) -> Path  # FR-005
+                        start_s: float | None = None, length_s: float | None = None,
+                        *, dest: Path | None = None) -> Path                  # FR-005
+    def ensure_free(self, name: str) -> None                                  # VoiceAlreadyRegisteredError if taken or withdrawn
     def register(self, name: str, engine: str, kind: VoiceKind, file: Path, *,
-                 recording_id: str | None, segment: Segment | None,
-                 creation: str, accent_label: str) -> None                    # FR-008, FR-011
+                 recording_id: str | None, segment: dict | None,      # {start_s, length_s}
+                 creation: str, accent_label: str,
+                 extra_warnings: list[str] | None = None) -> None             # FR-008, FR-011
     def register_fixed(self, name: str, engine: str, voice_id_or_file: str,
                        accent_label: str, creation: str) -> None              # FR-010
 
@@ -27,10 +35,12 @@ class LocalVoiceLibrary:
                 engine: str | None = None, use: str | None = None,
                 content: str | None = None) -> VoiceReference               # FR-012..014, FR-016
     def public_index(self) -> list[dict]
+    def show(self, name: str) -> dict
+    def verify(self, name: str | None = None) -> list[tuple[str, str]]       # every problem found
     def same_source(self, names: list[str]) -> bool                           # SC-002: false if any voice has no recording_id (fixed voices)
 
     # removing
-    def remove(self, name: str) -> None                                       # FR-009
+    def remove(self, name: str, results_dir: Path | None = None) -> WithdrawReport   # FR-009: deletes files, marks results, writes tombstone
     def withdraw(self, consent_id: str, results_dir: Path | None = None) -> WithdrawReport
 ```
 
@@ -62,7 +72,7 @@ Callers MUST resolve outside timed regions (hashing cost). Report builders MUST 
 | `list [--json]` | public view of registered voices | 0 |
 | `show NAME` | full metadata for one voice (local use only) | 0, 1 |
 | `verify [NAME]` | check existence and checksum of one or all voices | 0 all ok, 1 any missing/modified |
-| `remove NAME` | delete one voice and its generated audio | 0, 1 |
+| `remove NAME [--results-dir results]` | delete one voice and its generated audio, mark results `voice_withdrawn`, write a tombstone | 0, 1 |
 | `withdraw ALIAS [--results-dir results]` | one-action consent withdrawal (SC-004) | 0 |
 | `check-repo` | fail if voice material is tracked or ever was in history (SC-003) | 0 clean, 1 found |
 

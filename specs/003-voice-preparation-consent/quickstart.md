@@ -43,7 +43,7 @@ Expected: `list` shows the Phonon, both Pocket and both Piper voices; `show vale
 echo x >> cloned_voices/voices/valentina-pocket/reference.wav
 .venv-core/bin/python -m tts_bench.voices verify                                                  # exit 1: valentina-pocket modified
 ```
-Expected: the second command prints the engine mismatch explanation; `verify` reports the checksum mismatch. Restore the file by running `prepare` again after `remove`.
+Expected: the second command prints the engine mismatch explanation; `verify` reports the checksum mismatch. To restore it, `remove` the voice and prepare it again under a new name (removed names are not reusable).
 
 ## 5. Repository stays clean (User Story 4, SC-003)
 ```sh

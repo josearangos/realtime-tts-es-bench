@@ -81,12 +81,15 @@ docs/
 └── voice-preparation.md   # per-engine creation steps (FR-004), committed, no voice material
 tests/voices/
 ├── conftest.py            # synthetic WAV factory, temporary library root
+├── test_audio_check.py
 ├── test_consent.py
+├── test_consent_use.py
 ├── test_library_register_resolve.py
 ├── test_engine_mismatch_and_integrity.py
 ├── test_prepare_segments_and_warnings.py
 ├── test_remove_and_withdraw.py
-└── test_repocheck.py
+├── test_repocheck.py
+└── test_no_hardcoded_paths.py
 .gitignore                 # + *.onnx, *.pt, *.ckpt (voice and model files)
 ```
 

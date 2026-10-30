@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-29
 
-**Status**: Draft
+**Status**: Implemented
 
 **Input**: User description: "Prepare voices for cloning-capable engines (Phonon, Pocket TTS) from the same Spanish reference recording, assign a fixed voice to Piper, register prepared voice files (for example Phonon voice files) in a local voice library resolved by name, enforce speaker consent, and keep voice material out of the repository."
 
@@ -97,7 +97,7 @@ A maintainer wants to publish the repository without leaking anyone's voice.
 
 - **FR-001**: The system MUST require a consent record before preparing any cloned voice.
 - **FR-002**: A consent record MUST include speaker alias, date, permitted uses, and the kinds of test content the speaker allows.
-- **FR-003**: The Phonon voice and the Pocket TTS voice used for cross-engine comparison MUST be derived from the same reference recording (speaker `valentina`). Pocket TTS MAY also have a voice from a second recording (speaker `emiliano`); that voice is Pocket-only and is not part of cross-engine comparisons.
+- **FR-003**: The Phonon voice and the Pocket TTS voice used for cross-engine comparison MUST be derived from the same reference recording (speaker `valentina`; library names `valentina-phonon` and `valentina-pocket`). Pocket TTS MAY also have a voice from a second recording (speaker `emiliano`, library name `emiliano-pocket`); that voice is Pocket-only and is not part of cross-engine comparisons.
 - **FR-004**: The system MUST document per engine how the voice is created, including any external service or manual step.
 - **FR-005**: The system MUST record the reference segment (start and length) used per engine.
 - **FR-006**: The system MUST warn when the recording contains less than 10 seconds of speech or is noisy.
@@ -133,7 +133,7 @@ A maintainer wants to publish the repository without leaking anyone's voice.
 
 - The speaker alias is a pseudonym; no real names or contact details are stored (Constitution Principle VI).
 - Phonon and Pocket TTS are the only cloning-capable engines in scope; the fake engine is used for testing the library without model weights.
-- Voices in scope: Phonon `valentina` only; Pocket TTS `valentina` and `emiliano`; Piper two fixed voices (`es_MX-claude-high`, `es_AR-daniela-high`).
+- Voices in scope: speaker `valentina` for Phonon and Pocket TTS, speaker `emiliano` for Pocket TTS only; Piper two fixed voices (`es_MX-claude-high`, `es_AR-daniela-high`). Library names are unique across engines, so the registered names are `valentina-phonon`, `valentina-pocket` and `emiliano-pocket`; Piper voices keep their voice id.
 - The owner granted consent for both speakers (2025) for all permitted uses and all test-content kinds; the consent date is recorded as the year `2025` because no full date is available.
 - The Phonon voice file is created in the hosted Gradium studio (studio.gradium.ai) by cloning the voice and downloading the `.safetensors` file; the reference audio therefore leaves the machine for that step, which the consent covers.
 - Some engines (for example Phonon) may require an external or manual step to create the voice file; this feature registers the result rather than automating the external service.
