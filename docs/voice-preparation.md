@@ -34,6 +34,8 @@ Download: `python3 -m piper.download_voices --download-dir cloned_voices <voice>
 
 `remove <name>` removes one voice and its generated audio. `withdraw <alias>` removes every voice of a speaker, the recording and the consent record, and marks existing results `voice_withdrawn` (SC-004).
 
+`withdraw` only deletes files the library owns. It does not delete the originals you provided (the source `.wav` recordings and the downloaded `.safetensors` in `cloned_voices/`), nor anything uploaded to a third-party service such as studio.gradium.ai. Delete those yourself when consent is withdrawn.
+
 ## Keeping voice material out of git
 
 `python -m tts_bench.voices check-repo` exits 1 and lists any `cloned_voices/` path or `.wav`, `.safetensors`, `.onnx`, `.pt`, `.ckpt` file that is tracked or was ever added to history. To use it as a pre-commit check, call it from your own `.git/hooks/pre-commit`; no tool here modifies git config.

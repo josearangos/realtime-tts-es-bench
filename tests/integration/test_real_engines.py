@@ -10,9 +10,9 @@ from tts_bench.voices import LocalVoiceLibrary
 pytestmark = pytest.mark.engine
 
 CASES = [
-    ("phonon", "ptts", "valentina"),
-    ("pocket_tts", "pocket_tts", "valentina"),
-    ("pocket_tts", "pocket_tts", "emiliano"),
+    ("phonon", "ptts", "valentina-phonon"),
+    ("pocket_tts", "pocket_tts", "valentina-pocket"),
+    ("pocket_tts", "pocket_tts", "emiliano-pocket"),
     ("piper", "piper", "es_MX-claude-high"),
 ]
 TEXT = "Hola, esta es una prueba de síntesis de voz en español."
