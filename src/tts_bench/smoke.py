@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import wave
+from pathlib import Path
 from dataclasses import asdict
 
 import numpy as np
@@ -41,6 +42,7 @@ def main(argv: list[str] | None = None) -> int:
             pcm = res.audio
             if pcm.dtype != np.int16:
                 pcm = (np.clip(pcm, -1, 1) * 32767).astype(np.int16)
+            Path(a.out).parent.mkdir(parents=True, exist_ok=True)
             with wave.open(a.out, "wb") as w:
                 w.setnchannels(1)
                 w.setsampwidth(2)
