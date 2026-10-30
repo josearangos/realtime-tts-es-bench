@@ -375,12 +375,40 @@ class LocalVoiceLibrary:
                 shutil.rmtree(d)
         return count
 
-    def remove(self, name: str) -> None:
+    def remove(self, name: str, results_dir: Path | None = None) -> WithdrawReport:
+        """Remove one voice and its generated audio; mark results that used it (FR-009).
+
+        Leaves a tombstone so the name cannot be reused for a different voice.
+        """
         data = self._load()
         e = self._entry(data, name)
-        self._drop_voice_files(e)
+        report = WithdrawReport()
+        report.files_deleted += self._drop_voice_files(e)
+        data["withdrawn"].append({"name": name, "recording_id": e["recording_id"], "date": _today()})
         del data["voices"][name]
+        report.voices_removed.append(name)
+        report.tombstones_written += 1
         self._save(data)
+        report.results_marked = self._mark_results({name}, results_dir)
+        return report
+
+    @staticmethod
+    def _mark_results(names: set[str], results_dir: Path | None) -> list[str]:
+        marked = []
+        results = Path(results_dir) if results_dir is not None else Path("results")
+        if not results.is_dir():
+            return marked
+        for f in sorted(results.rglob("*.json")):
+            try:
+                doc = json.loads(f.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                continue
+            voice = doc.get("voice") if isinstance(doc, dict) else None
+            if isinstance(voice, dict) and voice.get("name") in names and not doc.get("voice_withdrawn"):
+                doc["voice_withdrawn"] = True
+                f.write_text(json.dumps(doc, indent=2, ensure_ascii=False), encoding="utf-8")
+                marked.append(str(f))
+        return marked
 
     def withdraw(self, consent_id: str, results_dir: Path | None = None) -> WithdrawReport:
         data = self._load()
@@ -407,17 +435,5 @@ class LocalVoiceLibrary:
             consent_file.unlink()
             report.files_deleted += 1
         self._save(data)
-        withdrawn = {t["name"] for t in data["withdrawn"]}
-        results = Path(results_dir) if results_dir is not None else Path("results")
-        if results.is_dir():
-            for f in sorted(results.rglob("*.json")):
-                try:
-                    doc = json.loads(f.read_text(encoding="utf-8"))
-                except (OSError, ValueError):
-                    continue
-                voice = doc.get("voice") if isinstance(doc, dict) else None
-                if isinstance(voice, dict) and voice.get("name") in withdrawn and not doc.get("voice_withdrawn"):
-                    doc["voice_withdrawn"] = True
-                    f.write_text(json.dumps(doc, indent=2, ensure_ascii=False), encoding="utf-8")
-                    report.results_marked.append(str(f))
+        report.results_marked = self._mark_results({t["name"] for t in data["withdrawn"]}, results_dir)
         return report

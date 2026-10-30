@@ -65,7 +65,9 @@ def _parser() -> argparse.ArgumentParser:
     ls.add_argument("--json", action="store_true")
     sub.add_parser("show").add_argument("name")
     sub.add_parser("verify").add_argument("name", nargs="?")
-    sub.add_parser("remove").add_argument("name")
+    rm = sub.add_parser("remove")
+    rm.add_argument("name")
+    rm.add_argument("--results-dir", default="results")
     w = sub.add_parser("withdraw")
     w.add_argument("alias")
     w.add_argument("--results-dir", default="results")
@@ -123,8 +125,7 @@ def _run(a: argparse.Namespace, lib: LocalVoiceLibrary) -> int:
             return 1
         print("all voices ok")
     elif a.cmd == "remove":
-        lib.remove(a.name)
-        print(f"removed '{a.name}'")
+        print(lib.remove(a.name, Path(a.results_dir)))
     elif a.cmd == "withdraw":
         print(lib.withdraw(a.alias, Path(a.results_dir)))
     elif a.cmd == "check-repo":

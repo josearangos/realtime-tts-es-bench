@@ -32,7 +32,7 @@ Download: `python3 -m piper.download_voices --download-dir cloned_voices <voice>
 
 ## Removing a voice
 
-`remove <name>` removes one voice and its generated audio. `withdraw <alias>` removes every voice of a speaker, the recording and the consent record, and marks existing results `voice_withdrawn` (SC-004).
+`remove <name> [--results-dir results]` removes one voice and its generated audio, marks results that used it `voice_withdrawn`, and leaves a tombstone so the name cannot be reused. `withdraw <alias>` removes every voice of a speaker, the recording and the consent record, and marks existing results `voice_withdrawn` (SC-004).
 
 `withdraw` only deletes files the library owns. It does not delete the originals you provided (the source `.wav` recordings and the downloaded `.safetensors` in `cloned_voices/`), nor anything uploaded to a third-party service such as studio.gradium.ai. Delete those yourself when consent is withdrawn.
 

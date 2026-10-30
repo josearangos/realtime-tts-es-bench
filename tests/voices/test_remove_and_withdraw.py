@@ -43,3 +43,23 @@ def test_withdraw(consented, recording, tmp_path):
 def test_withdraw_without_results_dir(consented, recording, tmp_path):
     register_fake(consented, recording)
     assert consented.withdraw("ana", tmp_path / "missing").results_marked == []
+
+
+def test_remove_marks_results_and_blocks_reuse(consented, recording, tmp_path):
+    register_fake(consented, recording, "a")
+    register_fake(consented, recording, "b")
+    g = consented.root / "generated" / "a"; g.mkdir(parents=True); (g / "o.wav").write_bytes(b"1")
+    res = tmp_path / "results"; res.mkdir()
+    hit = {"voice": {"name": "a"}, "ttfa_ms": 9.0}
+    keep = {"voice": {"name": "b"}, "ttfa_ms": 8.0}
+    (res / "hit.json").write_text(json.dumps(hit)); (res / "keep.json").write_text(json.dumps(keep))
+    report = consented.remove("a", res)
+    assert report.results_marked == [str(res / "hit.json")] and report.tombstones_written == 1
+    assert json.loads((res / "hit.json").read_text()) == {**hit, "voice_withdrawn": True}
+    assert json.loads((res / "keep.json").read_text()) == keep
+    assert not g.exists() and consented.resolve("b")
+    with pytest.raises(VoiceNotFoundError):
+        consented.resolve("a")
+    with pytest.raises(VoiceAlreadyRegisteredError):
+        register_fake(consented, recording, "a")
+    assert [t["name"] for t in json.loads((consented.root / "library.json").read_text())["withdrawn"]] == ["a"]
