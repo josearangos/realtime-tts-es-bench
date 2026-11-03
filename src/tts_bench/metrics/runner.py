@@ -13,7 +13,8 @@ from dataclasses import dataclass, field
 
 from ..core.errors import EmptyAudioError, TTSBenchError
 from ..core.voices import VoiceReference
-from .model import ChunkTiming, Measurement
+from .model import Measurement
+from .timing import timing_from_marks
 
 NS_PER_MS = 1e6
 
@@ -44,21 +45,13 @@ def _timed_call(adapter, sentence, voice, repetition: int, phase: str) -> tuple[
     if result.audio.size == 0 or seconds <= 0:
         return Measurement(sentence.id, repetition, phase, "invalid", error="zero-length audio"), t0, t1
 
-    start = result.request_started_ns
-    generation_ms = (result.finished_ns - start) / NS_PER_MS
-    chunk_timings: list[ChunkTiming] = []
-    prev = start
-    ttfa_ms = None
-    for c in result.chunks:
-        at = (c.produced_at_ns - start) / NS_PER_MS
-        chunk_timings.append(ChunkTiming(c.index, at, (c.produced_at_ns - prev) / NS_PER_MS))
-        prev = c.produced_at_ns
-        if ttfa_ms is None and c.samples.size > 0:
-            ttfa_ms = at
+    streams = result.descriptor.streaming.granularity != "none"
+    marks = [(c.index, c.produced_at_ns, int(c.samples.size)) for c in result.chunks]
+    timing = timing_from_marks(result.request_started_ns, marks, result.finished_ns, seconds, streams)
     m = Measurement(
         sentence.id, repetition, phase, "ok",
-        audio_seconds=seconds, generation_ms=generation_ms, rtf=generation_ms / 1000.0 / seconds,
-        ttfa_ms=ttfa_ms, chunks=tuple(chunk_timings),
+        audio_seconds=seconds, generation_ms=timing.generation_ms, rtf=timing.rtf,
+        ttfa_ms=timing.ttfa_ms, chunks=timing.chunks,
     )
     return m, t0, t1
 
