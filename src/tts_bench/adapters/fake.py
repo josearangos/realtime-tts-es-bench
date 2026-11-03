@@ -28,6 +28,10 @@ class FakeAdapter(BaseAdapter):
         max_chars: int | None = None,
         fail_after_chunks: int | None = None,
         name: str = "fake",
+        load_delay_s: float = 0.0,
+        fail_texts: frozenset[str] = frozenset(),
+        empty_texts: frozenset[str] = frozenset(),
+        empty_first_chunk: bool = False,
     ) -> None:
         super().__init__()
         self.first_chunk_delay_s = first_chunk_delay_s
@@ -36,6 +40,10 @@ class FakeAdapter(BaseAdapter):
         self.sample_rate = sample_rate
         self.n_chunks = n_chunks
         self.fail_after_chunks = fail_after_chunks
+        self.load_delay_s = load_delay_s
+        self.fail_texts = frozenset(fail_texts)
+        self.empty_texts = frozenset(empty_texts)
+        self.empty_first_chunk = empty_first_chunk
         self.descriptor = EngineDescriptor(
             name=name,
             engine_version="fake-1",
@@ -52,13 +60,20 @@ class FakeAdapter(BaseAdapter):
         )
 
     def _load(self) -> None:
-        pass
+        if self.load_delay_s:
+            time.sleep(self.load_delay_s)
 
     def _iter_engine(self, text: str, voice: VoiceReference) -> Iterator[tuple[np.ndarray, int, int]]:
+        if text in self.fail_texts:
+            raise RuntimeError("fake engine failure")
+        if text in self.empty_texts:
+            return
         total = int(self.audio_seconds * self.sample_rate)
         t = np.arange(total) / self.sample_rate
         audio = (0.1 * np.sin(2 * np.pi * 440 * t)).astype(np.float32)
         time.sleep(self.first_chunk_delay_s)
+        if self.empty_first_chunk and self.descriptor.streaming.granularity != "none":
+            yield audio[:0], self.sample_rate, 1
         if self.descriptor.streaming.granularity == "none":
             yield audio, self.sample_rate, 1
             return

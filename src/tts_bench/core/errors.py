@@ -30,6 +30,10 @@ class SynthesisError(TTSBenchError):
         self.partial_chunks = partial_chunks or []
 
 
+class EmptyAudioError(SynthesisError):
+    """The engine finished without producing any audio samples."""
+
+
 class VoiceNotFoundError(TTSBenchError):
     pass
 

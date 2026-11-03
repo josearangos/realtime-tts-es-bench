@@ -8,6 +8,7 @@ import numpy as np
 from .audio import AudioChunk, SynthesisResult
 from .descriptor import EngineDescriptor
 from .errors import (
+    EmptyAudioError,
     EngineAlreadyLoadedError,
     InputLimitError,
     StreamingNotSupportedError,
@@ -118,7 +119,7 @@ class BaseAdapter:
             raise SynthesisError(f"Synthesis failed in '{self.descriptor.name}': {exc}", chunks) from exc
         finished = time.perf_counter_ns()
         if not parts:
-            raise SynthesisError(f"Engine '{self.descriptor.name}' produced no audio.")
+            raise EmptyAudioError(f"Engine '{self.descriptor.name}' produced no audio.")
         return SynthesisResult(
             audio=np.concatenate(parts),
             sample_rate=rate,
