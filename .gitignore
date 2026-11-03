@@ -17,3 +17,6 @@ __pycache__/
 
 # intelligibility intermediate files (manifests, ASR cache); transcripts and results are tracked
 output/intelligibility/
+
+# speaker embeddings, audio and manifests are voice-derived data and never committed (Constitution Principle VI)
+output/speaker/

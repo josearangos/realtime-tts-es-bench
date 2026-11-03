@@ -1,0 +1,514 @@
+{
+  "audio_language": "es",
+  "command": "python -m tts_bench.speaker score output/speaker/pocket_tts-valentina-pocket/embeddings.json --eer --eer-from output/speaker/phonon-valentina-phonon/embeddings.json output/speaker/pocket_tts-emiliano-pocket/embeddings.json",
+  "consistency": {
+    "duration": {
+      "cv_mean": 0.05356773861105905,
+      "cv_median": 0.037515243664737435,
+      "n_declined": 0,
+      "n_sentences_valid": 21,
+      "n_unavailable": 0
+    },
+    "per_sentence": [
+      {
+        "duration_cv": 0.028530426280974373,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-001",
+        "similarity_cv": 0.029690317588089075,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.086577512817498,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-002",
+        "similarity_cv": 0.027996563483067054,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.06023335433073394,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-003",
+        "similarity_cv": 0.020487854330773932,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.043844470147054664,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-004",
+        "similarity_cv": 0.06462247939198497,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.013451125828522127,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-005",
+        "similarity_cv": 0.047782075072131926,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.021561229830047646,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-006",
+        "similarity_cv": 0.014866607159462097,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.05924121440665279,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-007",
+        "similarity_cv": 0.17124944231492994,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.01397273805268546,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-008",
+        "similarity_cv": 0.035105198291862684,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.05397022760808057,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-009",
+        "similarity_cv": 0.08937134049281782,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.08282513845999824,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-010",
+        "similarity_cv": 0.05165648840818517,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.1903153148075064,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-011",
+        "similarity_cv": 0.07159086197610143,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.037515243664737435,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-012",
+        "similarity_cv": 0.06279309858748872,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.04446726091618897,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-013",
+        "similarity_cv": 0.0569793472591329,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.020136445783933626,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-014",
+        "similarity_cv": 0.023148806954781394,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.01790989671758971,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-015",
+        "similarity_cv": 0.03844255558276956,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.08007255961453459,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-016",
+        "similarity_cv": 0.07703910091416602,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.026816026491476807,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-017",
+        "similarity_cv": 0.03643968974423148,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.031364753224036375,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-018",
+        "similarity_cv": 0.03268658785198896,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.025507927638234035,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-019",
+        "similarity_cv": 0.07428707217541558,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.022161265591686297,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-020",
+        "similarity_cv": 0.034962953857243656,
+        "similarity_reason": null
+      },
+      {
+        "duration_cv": 0.16444837862006798,
+        "duration_reason": null,
+        "n": 5,
+        "reason": null,
+        "sentence_id": "CLO-021",
+        "similarity_cv": 0.18530178660236848,
+        "similarity_reason": null
+      }
+    ],
+    "repetitions": 5,
+    "similarity": {
+      "cv_mean": 0.05935715371614251,
+      "cv_median": 0.047782075072131926,
+      "n_declined": 0,
+      "n_sentences_valid": 21,
+      "n_unavailable": 0
+    }
+  },
+  "corpus": {
+    "corpus_hash": "e4fb3b0af339b63f725652dfffd2a2080ce2ec75c36fd7f2425d6915cf4f36a4",
+    "corpus_version": "1.0.0",
+    "limit": null,
+    "subset": "cloning"
+  },
+  "eer": {
+    "available": true,
+    "eer": 0.015384615,
+    "gate_passed": true,
+    "high_eer_warning": false,
+    "n_different": 65,
+    "n_same": 63,
+    "pair_construction": "Same-speaker pairs: a voice's reference against each of its cloned clips of the designated run. Different-speaker pairs: that reference against the other consented voice's reference and clips (and its extra reference vectors). Pooled across cloning engines. With two speakers the EER measures the separation of those two voices only, and cloned clips are not natural recordings, so it is a sanity check on Spanish audio, not a general model evaluation.",
+    "reason": null,
+    "separation": 0.356738746,
+    "threshold": 0.329554458
+  },
+  "embedder": {
+    "checkpoint": "speechbrain/spkrec-ecapa-voxceleb@0f99f2d0ebe89ac095bcc5903c4dd8f72b367286",
+    "device": "cpu",
+    "library_versions": {
+      "speechbrain": "1.1.2",
+      "torch": "2.15.0",
+      "torchaudio": "2.11.1"
+    },
+    "license": "Apache-2.0 (checkpoint card on Hugging Face); trained on VoxCeleb1+2, whose own terms were not verified for commercial use",
+    "limitation_note": "Embeddings capture channel, noise and prosody as well as voice; the model is trained on English-dominant celebrity speech, so Spanish (es-CO) scores need the EER check; similarity near 1 is not identity.",
+    "name": "speechbrain-ecapa",
+    "settings": {
+      "channels": 1,
+      "dimension": 192,
+      "normalization": "none",
+      "sample_rate": 16000
+    },
+    "settings_hash": "62f735dd2e57f0be",
+    "training_data_note": "Trained on VoxCeleb (English-dominant celebrity interviews)."
+  },
+  "engine": {
+    "engine_version": "4.0.1",
+    "model_id": "hf://kyutai/pocket-tts (language=spanish)",
+    "name": "pocket_tts",
+    "spanish_variant": "es-CO (cloned from reference audio)",
+    "supports_cloning": true,
+    "voice": {
+      "accent_label": "es-CO",
+      "kind": "reference_audio",
+      "name": "valentina-pocket",
+      "recording_id": "rec-5065ba29756d"
+    }
+  },
+  "environment": {
+    "git_commit": "3e1f221ce519232eb61acfd7128d84776a2bd549",
+    "os_name": "Darwin",
+    "os_release": "25.2.0",
+    "python": "3.11.13",
+    "started_utc": "2026-11-03T15:30:21Z",
+    "tts_bench_version": "0.1.0"
+  },
+  "notice": "Speaker similarity scores come from one embedding model and are not a substitute for human judgment; a score near 1 does not guarantee the voice sounds identical.",
+  "reference_quality": {
+    "accent": "es-CO",
+    "duration_s": 16.3,
+    "recording_id": "rec-5065ba29756d",
+    "snr_estimate_db": 48.2,
+    "speech_seconds": 14.01,
+    "warnings": []
+  },
+  "schema_version": 1,
+  "sentences": [
+    {
+      "campaign": "outbound_sales",
+      "duration_s": 7.04,
+      "flags": [],
+      "sentence_id": "CLO-001",
+      "similarity": 0.600301607945,
+      "tags": [
+        "proper_name"
+      ]
+    },
+    {
+      "campaign": "outbound_sales",
+      "duration_s": 8.48,
+      "flags": [],
+      "sentence_id": "CLO-002",
+      "similarity": 0.593009172376,
+      "tags": [
+        "amount_cop"
+      ]
+    },
+    {
+      "campaign": "outbound_sales",
+      "duration_s": 5.36,
+      "flags": [],
+      "sentence_id": "CLO-003",
+      "similarity": 0.599171409649,
+      "tags": [
+        "datetime"
+      ]
+    },
+    {
+      "campaign": "outbound_sales",
+      "duration_s": 3.44,
+      "flags": [],
+      "sentence_id": "CLO-004",
+      "similarity": 0.595743611587,
+      "tags": [
+        "question"
+      ]
+    },
+    {
+      "campaign": "outbound_sales",
+      "duration_s": 4.96,
+      "flags": [],
+      "sentence_id": "CLO-005",
+      "similarity": 0.59886748392,
+      "tags": []
+    },
+    {
+      "campaign": "outbound_sales",
+      "duration_s": 10.88,
+      "flags": [],
+      "sentence_id": "CLO-006",
+      "similarity": 0.650006064459,
+      "tags": [
+        "long"
+      ]
+    },
+    {
+      "campaign": "outbound_sales",
+      "duration_s": 1.92,
+      "flags": [
+        "short_audio"
+      ],
+      "sentence_id": "CLO-007",
+      "similarity": 0.366737703559,
+      "tags": [
+        "short"
+      ]
+    },
+    {
+      "campaign": "collections",
+      "duration_s": 6.4,
+      "flags": [],
+      "sentence_id": "CLO-008",
+      "similarity": 0.665521117365,
+      "tags": [
+        "proper_name",
+        "question"
+      ]
+    },
+    {
+      "campaign": "collections",
+      "duration_s": 6.4,
+      "flags": [],
+      "sentence_id": "CLO-009",
+      "similarity": 0.453217898859,
+      "tags": [
+        "amount_cop",
+        "datetime"
+      ]
+    },
+    {
+      "campaign": "collections",
+      "duration_s": 4.64,
+      "flags": [],
+      "sentence_id": "CLO-010",
+      "similarity": 0.615355459043,
+      "tags": [
+        "datetime"
+      ]
+    },
+    {
+      "campaign": "collections",
+      "duration_s": 9.84,
+      "flags": [],
+      "sentence_id": "CLO-011",
+      "similarity": 0.558156519655,
+      "tags": [
+        "number",
+        "acronym"
+      ]
+    },
+    {
+      "campaign": "collections",
+      "duration_s": 3.44,
+      "flags": [],
+      "sentence_id": "CLO-012",
+      "similarity": 0.582031724921,
+      "tags": [
+        "question"
+      ]
+    },
+    {
+      "campaign": "collections",
+      "duration_s": 5.84,
+      "flags": [],
+      "sentence_id": "CLO-013",
+      "similarity": 0.642529980195,
+      "tags": []
+    },
+    {
+      "campaign": "collections",
+      "duration_s": 9.68,
+      "flags": [],
+      "sentence_id": "CLO-014",
+      "similarity": 0.629586123118,
+      "tags": [
+        "long"
+      ]
+    },
+    {
+      "campaign": "inbound",
+      "duration_s": 5.76,
+      "flags": [],
+      "sentence_id": "CLO-015",
+      "similarity": 0.590075018376,
+      "tags": [
+        "proper_name",
+        "question"
+      ]
+    },
+    {
+      "campaign": "inbound",
+      "duration_s": 7.84,
+      "flags": [],
+      "sentence_id": "CLO-016",
+      "similarity": 0.610522138367,
+      "tags": [
+        "amount_cop",
+        "datetime"
+      ]
+    },
+    {
+      "campaign": "inbound",
+      "duration_s": 5.2,
+      "flags": [],
+      "sentence_id": "CLO-017",
+      "similarity": 0.569438894109,
+      "tags": [
+        "question"
+      ]
+    },
+    {
+      "campaign": "inbound",
+      "duration_s": 6.16,
+      "flags": [],
+      "sentence_id": "CLO-018",
+      "similarity": 0.617138829773,
+      "tags": [
+        "hard_word"
+      ]
+    },
+    {
+      "campaign": "inbound",
+      "duration_s": 5.36,
+      "flags": [],
+      "sentence_id": "CLO-019",
+      "similarity": 0.468670666962,
+      "tags": [
+        "hard_word"
+      ]
+    },
+    {
+      "campaign": "inbound",
+      "duration_s": 9.28,
+      "flags": [],
+      "sentence_id": "CLO-020",
+      "similarity": 0.562092864309,
+      "tags": [
+        "number"
+      ]
+    },
+    {
+      "campaign": "inbound",
+      "duration_s": 1.44,
+      "flags": [
+        "short_audio"
+      ],
+      "sentence_id": "CLO-021",
+      "similarity": 0.403868033939,
+      "tags": [
+        "short"
+      ]
+    }
+  ],
+  "summary": {
+    "n_flagged": 0,
+    "n_scored": 21,
+    "n_sentences": 21,
+    "n_short_audio": 2,
+    "similarity": {
+      "max": 0.665521117365,
+      "mean": 0.5700972534517144,
+      "min": 0.366737703559,
+      "sd": 0.07988241192390175
+    },
+    "status": "scored",
+    "warnings": [
+      "2 clip(s) shorter than 3.0 s: speaker embeddings of short audio are less reliable (kept in the average)"
+    ]
+  }
+}

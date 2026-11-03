@@ -14,6 +14,7 @@ phonon = ["ptts"]
 pocket = ["pocket-tts"]
 piper = ["piper-tts"]
 asr = ["faster-whisper"]
+speaker = ["speechbrain", "torchaudio"]
 dev = ["pytest"]
 
 [tool.setuptools.packages.find]

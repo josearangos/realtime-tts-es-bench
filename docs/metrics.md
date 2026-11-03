@@ -41,3 +41,8 @@ Clock: `time.perf_counter_ns()` (monotonic). Audio duration: samples per channel
 Results are comparable only on the same hardware, corpus version and hash, subset, `--limit` and locality. Hardware identity is CPU model, logical cores, RAM (GiB), GPU model, OS name and major version. Different hardware is refused unless `--allow-mixed-hardware` (which lifts only that check); differences in library versions or thread settings are listed but do not block. Cold and warm results are always shown in separate tables. A refused merge exits 3 and writes nothing.
 
 Changing a definition above requires a spec update, a `schema_version` bump, and a note in the report.
+
+## See also
+
+- [Intelligibility metrics (WER and CER)](intelligibility.md)
+- [Speaker similarity and consistency metrics](speaker-similarity.md)

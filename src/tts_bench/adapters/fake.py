@@ -32,6 +32,9 @@ class FakeAdapter(BaseAdapter):
         fail_texts: frozenset[str] = frozenset(),
         empty_texts: frozenset[str] = frozenset(),
         empty_first_chunk: bool = False,
+        supports_cloning: bool = False,
+        audio_seconds_sequence: tuple[float, ...] | None = None,
+        tone_hz_sequence: tuple[float, ...] | None = None,
     ) -> None:
         super().__init__()
         self.first_chunk_delay_s = first_chunk_delay_s
@@ -44,6 +47,10 @@ class FakeAdapter(BaseAdapter):
         self.fail_texts = frozenset(fail_texts)
         self.empty_texts = frozenset(empty_texts)
         self.empty_first_chunk = empty_first_chunk
+        # The n-th synthesis call uses element n % len of each sequence (controlled repetitions).
+        self.audio_seconds_sequence = audio_seconds_sequence
+        self.tone_hz_sequence = tone_hz_sequence
+        self._calls = 0
         self.descriptor = EngineDescriptor(
             name=name,
             engine_version="fake-1",
@@ -54,7 +61,7 @@ class FakeAdapter(BaseAdapter):
             language="es",
             spanish_variant="none (synthetic tone)",
             voice_kind="fixed_voice",
-            supports_cloning=False,
+            supports_cloning=supports_cloning,
             streaming=StreamingInfo(granularity),  # type: ignore[arg-type]
             input_limits=InputLimits(max_chars),
         )
@@ -68,9 +75,17 @@ class FakeAdapter(BaseAdapter):
             raise RuntimeError("fake engine failure")
         if text in self.empty_texts:
             return
-        total = int(self.audio_seconds * self.sample_rate)
+        n = self._calls
+        self._calls += 1
+        seconds = self.audio_seconds
+        if self.audio_seconds_sequence:
+            seconds = self.audio_seconds_sequence[n % len(self.audio_seconds_sequence)]
+        hz = 440.0
+        if self.tone_hz_sequence:
+            hz = self.tone_hz_sequence[n % len(self.tone_hz_sequence)]
+        total = int(seconds * self.sample_rate)
         t = np.arange(total) / self.sample_rate
-        audio = (0.1 * np.sin(2 * np.pi * 440 * t)).astype(np.float32)
+        audio = (0.1 * np.sin(2 * np.pi * hz * t)).astype(np.float32)
         time.sleep(self.first_chunk_delay_s)
         if self.empty_first_chunk and self.descriptor.streaming.granularity != "none":
             yield audio[:0], self.sample_rate, 1
