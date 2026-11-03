@@ -20,3 +20,7 @@ output/intelligibility/
 
 # speaker embeddings, audio and manifests are voice-derived data and never committed (Constitution Principle VI)
 output/speaker/
+
+# backend request log and local engine/venv config are local-only
+output/backend/
+backend.toml
