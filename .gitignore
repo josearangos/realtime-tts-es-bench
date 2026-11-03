@@ -14,3 +14,6 @@ phonon-40m-es/
 *.egg-info/
 __pycache__/
 .pytest_cache/
+
+# intelligibility intermediate files (manifests, ASR cache); transcripts and results are tracked
+output/intelligibility/

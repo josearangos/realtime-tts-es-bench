@@ -13,6 +13,7 @@ dependencies = ["numpy"]
 phonon = ["ptts"]
 pocket = ["pocket-tts"]
 piper = ["piper-tts"]
+asr = ["faster-whisper"]
 dev = ["pytest"]
 
 [tool.setuptools.packages.find]
