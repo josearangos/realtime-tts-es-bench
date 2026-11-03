@@ -1,0 +1,918 @@
+{
+  "command": "python -m tts_bench.intelligibility transcribe output/intelligibility/pocket_tts-valentina-pocket/ --cache output/intelligibility/_cache",
+  "corpus": {
+    "corpus_hash": "e4fb3b0af339b63f725652dfffd2a2080ce2ec75c36fd7f2425d6915cf4f36a4",
+    "corpus_version": "1.0.0",
+    "limit": null,
+    "subset": "main"
+  },
+  "engine": {
+    "engine_version": "4.0.1",
+    "model_id": "hf://kyutai/pocket-tts (language=spanish)",
+    "name": "pocket_tts",
+    "spanish_variant": "es-CO (cloned from reference audio)",
+    "streaming_granularity": "chunk",
+    "voice": {
+      "checksum": "a7d511571b05031258c506a19d0b5f413136d681351f09345a82bc6466e94c96",
+      "kind": "reference_audio",
+      "name": "valentina-pocket"
+    }
+  },
+  "environment": {
+    "git_commit": "6f29c85a4cfe87e7790a0334976d5f09e40371d5",
+    "os_name": "Darwin",
+    "os_release": "25.2.0",
+    "python": "3.11.13",
+    "started_utc": "2026-11-03T14:01:03Z",
+    "tts_bench_version": "0.1.0"
+  },
+  "manifest_sha256": "886f60ae1150d988a48d6cf6cdec1573964b3ae5c102b712e89b2955402edd25",
+  "recognizer": {
+    "accent_note": "Recognizer accuracy varies with regional accent; a rate here mixes the engine's Spanish variant with the recognizer's coverage of it.",
+    "checkpoint": "large-v3",
+    "device": "cpu/int8",
+    "library_versions": {
+      "ctranslate2": "4.8.5",
+      "faster-whisper": "1.2.1"
+    },
+    "license": "MIT (Systran/faster-whisper-large-v3 model card)",
+    "license_flag": null,
+    "name": "faster-whisper",
+    "settings": {
+      "beam_size": 1,
+      "compute_type": "int8",
+      "condition_on_previous_text": false,
+      "device": "cpu",
+      "initial_prompt": null,
+      "language": "es",
+      "model": "large-v3",
+      "temperature": 0,
+      "vad_filter": false
+    },
+    "settings_hash": "821c1a8124cfbad6b0622310cb22f347ccc413bc19cb2d6ef4836f2cc2056d01"
+  },
+  "schema_version": 1,
+  "transcripts": [
+    {
+      "audio_sha256": "cb80a10d2e2445d9af242f3cb0358f11d9285e74b4e2f689bd1a06c0da91472e",
+      "language": "es",
+      "sentence_id": "COB-001",
+      "status": "ok",
+      "text": "Buenas tardes, hablo con el señor Juliano Espina. Le habla Daniela, del Banco Altamira, y lo llamo por un tema de su tarjeta de crédito."
+    },
+    {
+      "audio_sha256": "2fc4e37b6a5b22d7aeef836a6aa6f28dbe1404e3c10c04490388603494071dad",
+      "language": "es",
+      "sentence_id": "COB-002",
+      "status": "ok",
+      "text": "El saldo actual de su tarjeta es de la diaprem. Breva Roti. Recibe SID con un pago mínimo de la diplomé."
+    },
+    {
+      "audio_sha256": "64bf0cfde546c028eb4fa3b02c247b64fdfaa861adc2c485f3518be2f19105bb",
+      "language": "es",
+      "sentence_id": "COB-003",
+      "status": "ok",
+      "text": "Su tarjeta terminada en Vero en Vail, West Africa, presenta un saldo pendiente desde el mes pasado."
+    },
+    {
+      "audio_sha256": "2c5f0993cca12428be0e238884f59db867830221a459ef6dd4d7a73c31b4eb7c",
+      "language": "es",
+      "sentence_id": "COB-004",
+      "status": "ok",
+      "text": "el cupo disponible hoy es de sarap basirba de basi fuiste a seguir usando la tarjeta con normalidad"
+    },
+    {
+      "audio_sha256": "200270fec86f8a83830ac59a6d72578adee08209e58e188d80be663ff1f5e340",
+      "language": "es",
+      "sentence_id": "COB-005",
+      "status": "ok",
+      "text": "reconoce usted un consumo de lava pasiemo sin ese edicio realizado el de octubre en un supermercado"
+    },
+    {
+      "audio_sha256": "fd3473fdc1c31fb0d4e7ff899c2728f7c930d1118765f161af803dd0ae50795c",
+      "language": "es",
+      "sentence_id": "COB-006",
+      "status": "ok",
+      "text": "El pago mínimo le evita intereses de mora, y el resto lo puede diferir a la cantidad de cuotas que prefiera, según su capacidad de pago y sus gastos del mes."
+    },
+    {
+      "audio_sha256": "4d8f0f86d9b348dd4276839f2c56825e6f4dd1e4303073a69ac2a38dbe98c5c3",
+      "language": "es",
+      "sentence_id": "COB-007",
+      "status": "ok",
+      "text": "Quiero recordarle que la cuota número Batub de su crédito por la Darmel Mabeba de Citositucía quedó pendiente desde el septiembre de octubre."
+    },
+    {
+      "audio_sha256": "522b3b4b4a18bada5714894a09e65c242bc2da14e7e7bcfabc55b4fad5501f62",
+      "language": "es",
+      "sentence_id": "COB-008",
+      "status": "ok",
+      "text": "Sabemos que a veces se presentan imprevistos y por eso queremos ayudarle a ponerse al día sin afanes."
+    },
+    {
+      "audio_sha256": "2cb599909fc3067636cfda19b643c64ddadbcdeacfc4c59efb9dde239716ed75",
+      "language": "es",
+      "sentence_id": "COB-009",
+      "status": "ok",
+      "text": "tiene base a cuotas vencidas que suman a Bartané Sarki. Cito sitio. ¿Cuándo cree que podría realizar el pago?"
+    },
+    {
+      "audio_sha256": "cdb6bde3e0699b23adbeddd46f1b92349b7d8b566a77d32d909fc1f72d15ebda",
+      "language": "es",
+      "sentence_id": "COB-010",
+      "status": "ok",
+      "text": "Si ya hizo el pago de manera extemporánea, no se preocupe, lo revisamos juntos."
+    },
+    {
+      "audio_sha256": "d5f1d36397c18d721b760485e40c92d394888dec174bfe16d38f27cba704a2e5",
+      "language": "es",
+      "sentence_id": "COB-011",
+      "status": "ok",
+      "text": "su obligacion numero tisti mero va de prende breprenier restou beba va ci adi avesadias de atraso y queremos encontrar una solucion"
+    },
+    {
+      "audio_sha256": "cbe4031481f63c4266f7fde6432757cf50ca0948a43be5b8d29ab8d382777f94",
+      "language": "es",
+      "sentence_id": "COB-012",
+      "status": "ok",
+      "text": "Gracias por atenderme, Doña Rosa Elena. Entiendo que este mes ha sido difícil."
+    },
+    {
+      "audio_sha256": "906b70d16d1111f73de9bc880fac851efe7d679f852e68ab349095c5ae9c7ea5",
+      "language": "es",
+      "sentence_id": "COB-013",
+      "status": "ok",
+      "text": "Su fecha límite de pago es el Praden de noviembre y le recomendamos hacerlo antes de las 10. Cito así de la tarde para que el pago quede registrado el mismo día."
+    },
+    {
+      "audio_sha256": "0f540f1b0a474ac9352fdd39cd1b411f40a45f2ebb906f47c12cb9b6f7406ff3",
+      "language": "es",
+      "sentence_id": "COB-014",
+      "status": "ok",
+      "text": "Le queda una semana para pagar sin recargos. La fecha de corte fue el vaciado de octubre."
+    },
+    {
+      "audio_sha256": "d9e57f68d69f348a3549d51a5a5c4db332a202f283242a8a5568b2a132526e84",
+      "language": "es",
+      "sentence_id": "COB-015",
+      "status": "ok",
+      "text": "El próximo vencimiento será el viernes vacián y de noviembre a medianoche."
+    },
+    {
+      "audio_sha256": "d83922708882b56bc4da5b4c75eea67e0b6f553ba59f249392acf0f8e267d7c9",
+      "language": "es",
+      "sentence_id": "COB-016",
+      "status": "ok",
+      "text": "¿Para qué día le queda más cómodo programar el pago? ¿Para el Cepieso para el Svetbre?"
+    },
+    {
+      "audio_sha256": "fea4ff62ba5517dc488bd196faa6c4ef7e20d8c9463b85137d873ea3f46b6134",
+      "language": "es",
+      "sentence_id": "COB-017",
+      "status": "ok",
+      "text": "Si paga antes del diagnóstico de octubre, no se le cobra el interés de mora de este mes."
+    },
+    {
+      "audio_sha256": "dc0c7d04525947d3ea8124be2d42491e061ec8f4b29eb424687f05b639a9ba35",
+      "language": "es",
+      "sentence_id": "COB-018",
+      "status": "ok",
+      "text": "Te recuerdo que tu cuota vence el lunes vacía de noviembre."
+    },
+    {
+      "audio_sha256": "6f321b7973957e28a8aa7c5e3322fe096b247f8d9927f36a1b1ba5e2fea65f15",
+      "language": "es",
+      "sentence_id": "COB-019",
+      "status": "ok",
+      "text": "podemos acordar un plan de pagos de Paz Visuales de las Aljuas de Sabía, FIDACIN, sin cobros adicionales."
+    },
+    {
+      "audio_sha256": "7f55bb65d363836710f8e71bb441d61d4013d2c1f8484b005b4c1666e539d91f",
+      "language": "es",
+      "sentence_id": "COB-020",
+      "status": "ok",
+      "text": "Estaría de acuerdo con abonar hoy, daba, fia via te sitie. Si te fiqui vivir el resto en tres pagos."
+    },
+    {
+      "audio_sha256": "7ac818a4e433dc0502d0aefd65c2bea95c3bb9b827a3e9071904ea601d8536dc",
+      "language": "es",
+      "sentence_id": "COB-021",
+      "status": "ok",
+      "text": "Perfecto. Entonces quedamos así. Primer pago el exceba de noviembre y segundo pago el exceba de diciembre."
+    },
+    {
+      "audio_sha256": "c0930c31085caeadbac282db811091ba7f1a1a769b30a7ec49feaa0943ebe62b",
+      "language": "es",
+      "sentence_id": "COB-022",
+      "status": "ok",
+      "text": "Una vez cancele el valor acordado, le enviamos el PAS y salvo a su correo electrónico."
+    },
+    {
+      "audio_sha256": "3b43f987a0ba316687e0d5f2beec240bf27a53106c06c5d70816d8fc9fab5ceb",
+      "language": "es",
+      "sentence_id": "COB-023",
+      "status": "ok",
+      "text": "La refinanciación de su deuda reduce la cuota mensual, aunque el plazo total sería mayor."
+    },
+    {
+      "audio_sha256": "884920014e51edd87a17631bdb1c7f476c93f743cf251deed694e40db73bf2b8",
+      "language": "es",
+      "sentence_id": "COB-024",
+      "status": "ok",
+      "text": "Quedo atenta a su confirmación, señor Ospina, y le agradezco su disposición."
+    },
+    {
+      "audio_sha256": "f54b2212e6e6ec2ffffa2532205c189d3d147a6c05f5235d98d934a5cc4668be",
+      "language": "es",
+      "sentence_id": "COB-025",
+      "status": "ok",
+      "text": "Puede pagar por C en la aplicación o en la página web del banco. Las vacían me horas."
+    },
+    {
+      "audio_sha256": "3ed235bb7a85bbb8c32811cfe690c867912e70f8c83d50188f0ed323f26eaaaa",
+      "language": "es",
+      "sentence_id": "COB-026",
+      "status": "ok",
+      "text": "También puede acercarse a cualquier corresponsal bancario con la referencia ButWoo."
+    },
+    {
+      "audio_sha256": "0ab27843c84afbe871cea446898d0723b49bb5bdb91a4bb572145f8eb08ef928",
+      "language": "es",
+      "sentence_id": "COB-027",
+      "status": "ok",
+      "text": "Le envío ahora mismo un SMUS con el enlace de pago seguro."
+    },
+    {
+      "audio_sha256": "6d316775bab3e5fed945c7d017bfc0e3d33fb306348f63b3b0af52e67bef3b94",
+      "language": "es",
+      "sentence_id": "COB-028",
+      "status": "ok",
+      "text": "Esta transacción es completamente segura y queda registrada de inmediato en su cuenta."
+    },
+    {
+      "audio_sha256": "42b9beed367e8783cd1411d4a7b02b1dafd748c5ccbdf5be5bdcef64cbb5fb92",
+      "language": "es",
+      "sentence_id": "COB-029",
+      "status": "ok",
+      "text": "Vos podés pagar en el cajero automático con la tarjeta débito."
+    },
+    {
+      "audio_sha256": "7754af30cee3f0776df5049bfa04d639ea20c5e90bc552dca8b960eeb5232efe",
+      "language": "es",
+      "sentence_id": "COB-030",
+      "status": "ok",
+      "text": "Si prefiere, puede pagar desde su celular con la billetera digital del banco."
+    },
+    {
+      "audio_sha256": "a21288d6708e12a4bf42eaa09873a1a4e4f235f10719eed2012518149f6ed8f8",
+      "language": "es",
+      "sentence_id": "COB-031",
+      "status": "ok",
+      "text": "Buenos días, señora Patricia Londoño. La llamo para recordar y amablemente su pago pendiente."
+    },
+    {
+      "audio_sha256": "8a1fad04c69a31f1e71dfd006bb797992d8021ec78b3d91e99a6d0768dabdb93",
+      "language": "es",
+      "sentence_id": "COB-032",
+      "status": "ok",
+      "text": "Este es un recordatorio. Su pago de Darida. Bema Brev. Cito si Dios vence mañana."
+    },
+    {
+      "audio_sha256": "20b32b948f2fa6b5b5e5f695df5eacf7a087d8764da680f6df3ac589640ecbf5",
+      "language": "es",
+      "sentence_id": "COB-033",
+      "status": "ok",
+      "text": "pudo realizar el pago que habíamos acordado."
+    },
+    {
+      "audio_sha256": "724577f4571d543bad77d62de930897956eb50e89192b20310407d69d55bbe8f",
+      "language": "es",
+      "sentence_id": "COB-034",
+      "status": "ok",
+      "text": "Su pago del GEN de noviembre quedó registrado correctamente. Muchas gracias."
+    },
+    {
+      "audio_sha256": "a7ccdd1b8f4ced6d95d49f4afafa0857813033b1a50f95b1f53556f249efdcd1",
+      "language": "es",
+      "sentence_id": "COB-035",
+      "status": "ok",
+      "text": "Listo, quedo pendiente."
+    },
+    {
+      "audio_sha256": "e3d971dfcf3d403843029cbd3afbf6b6fef6439ab678b65afccb5995570f9c05",
+      "language": "es",
+      "sentence_id": "COB-036",
+      "status": "ok",
+      "text": "Le deseo una excelente tarde."
+    },
+    {
+      "audio_sha256": "21c995b7ba8a705df3376d53ce928de4e6811067aef916e9f79e91d83a071f9f",
+      "language": "es",
+      "sentence_id": "COB-037",
+      "status": "ok",
+      "text": "Le informo que esta llamada es grabada y monitoreada y que la información que usted nos suministre se usará únicamente para gestionar su obligación. De acuerdo con la Ley de Protección de Datos Personales."
+    },
+    {
+      "audio_sha256": "e9113db1e86ca459891027dbc57bd317f22acbccb25bb9c9081084a882cba4ff",
+      "language": "es",
+      "sentence_id": "COB-038",
+      "status": "ok",
+      "text": "Por seguridad, antes de hablar de su cuenta, debo confirmar que hablo con el titular y no puedo dar información a terceras personas, aunque sean familiares o compañeros de trabajo."
+    },
+    {
+      "audio_sha256": "bb1cee72e69e99bd8732e33285c9f25013d98587a86423ccd7b5649abee26557",
+      "language": "es",
+      "sentence_id": "COB-039",
+      "status": "ok",
+      "text": "con gusto."
+    },
+    {
+      "audio_sha256": "1dd879955998a1eedc1ca54233a4e051f87e78d40695cb8dab0c0f112efd7e8d",
+      "language": "es",
+      "sentence_id": "COB-040",
+      "status": "ok",
+      "text": "Un momento, por favor."
+    },
+    {
+      "audio_sha256": "d7f9f3a4b7bcb354bae1c2d6a8ff05b7a36cc57e48098a474ac7d8f0f1b1b462",
+      "language": "es",
+      "sentence_id": "COB-041",
+      "status": "ok",
+      "text": "Tranquilo, hablemos de cómo podés ponerte al día. ¿Qué te queda más cómodo?"
+    },
+    {
+      "audio_sha256": "10ac7da6da49147d79e42c72c07aaf2dcfe56f37e7e23a338264b06c97d7025a",
+      "language": "es",
+      "sentence_id": "ENT-001",
+      "status": "ok",
+      "text": "Bienvenido a Mobilar, le habla Carolina. ¿En qué le puedo colaborar hoy?"
+    },
+    {
+      "audio_sha256": "aeccd2a43b7885f2807b71dd3dfcb772713174bd8a741956b3870ba60ff6dd30",
+      "language": "es",
+      "sentence_id": "ENT-002",
+      "status": "ok",
+      "text": "Buenas tardes. Gracias por comunicarse con la línea de atención al cliente de Mobilar. Mi nombre es Santiago Mejía."
+    },
+    {
+      "audio_sha256": "097f4d1c0eb2885e9b3893bd55189a6888f2d19303943f27719d4cf5223d9be1",
+      "language": "es",
+      "sentence_id": "ENT-003",
+      "status": "ok",
+      "text": "Hola, ¿cómo estás? Cuéntame, ¿en qué te puedo ayudar?"
+    },
+    {
+      "audio_sha256": "12d8f987175d9963d2f029d53656a7d435f217d660c10bf2e0525a574489bd17",
+      "language": "es",
+      "sentence_id": "ENT-004",
+      "status": "ok",
+      "text": "Buenos días, con quien tengo el gusto."
+    },
+    {
+      "audio_sha256": "d7cc6954eb383aa9658a69861c4f97c9a3e01a481e0154a36dd6d1b40b1eb5e0",
+      "language": "es",
+      "sentence_id": "ENT-005",
+      "status": "ok",
+      "text": "a la orden que necesita."
+    },
+    {
+      "audio_sha256": "d8d261ce14d8ecb58f69da50e5e3c9af16d3b8e326d3900239bfc72dec515386",
+      "language": "es",
+      "sentence_id": "ENT-006",
+      "status": "ok",
+      "text": "Para su seguridad, me confirma su número de cédula, por favor."
+    },
+    {
+      "audio_sha256": "2d1fc5e6341269a51fc18390e8911dc3c5b6a5a8d6ed83f33551c71040ca11e8",
+      "language": "es",
+      "sentence_id": "ENT-007",
+      "status": "ok",
+      "text": "Gracias. El celular registrado en la cuenta termina en Bansi de Siboldi."
+    },
+    {
+      "audio_sha256": "eb381b7f2e116de831580519699c8c958af232c25a1403b7f61db4198995513e",
+      "language": "es",
+      "sentence_id": "ENT-008",
+      "status": "ok",
+      "text": "Perfecto, señora Luz Marina. Ya la tengo identificada en el sistema."
+    },
+    {
+      "audio_sha256": "ec87530417e4be77edf129d07c807aeb938476fd4829ef75b4e4fa1bdaa2a3b0",
+      "language": "es",
+      "sentence_id": "ENT-009",
+      "status": "ok",
+      "text": "Su contrato termina en que Messier Pedro Brenosa Paul mate."
+    },
+    {
+      "audio_sha256": "24823cac5985894efd9c64b3fd5fdc5a54f8420686e42e019613ad40262bb1f1",
+      "language": "es",
+      "sentence_id": "ENT-010",
+      "status": "ok",
+      "text": "Le pido el NITE de la empresa y el nombre del representante legal."
+    },
+    {
+      "audio_sha256": "835053300c4239f24887935c1e665263986574cf2c9553ed65b94d4325c9a9bd",
+      "language": "es",
+      "sentence_id": "ENT-011",
+      "status": "ok",
+      "text": "Su factura de octubre llegó por la de Carmen Babassia. Los impuestos y un cobro por exceso de datos que usted consumió después de agotar su paquete mensual."
+    },
+    {
+      "audio_sha256": "ff2f231ffea70feea5e0e8f824fcb685d579e7073503735a85a185b26a08d054",
+      "language": "es",
+      "sentence_id": "ENT-012",
+      "status": "ok",
+      "text": "veo un cobro doble de daraba zapijana el apreciot el gen bebo de octubre voy á radicar el reclamo"
+    },
+    {
+      "audio_sha256": "177b07220d463aa4feca03d42085b6a0cb629f06669d6d7474804d96dd692046",
+      "language": "es",
+      "sentence_id": "ENT-013",
+      "status": "ok",
+      "text": "el saldo a favor de Daria Benopré. CitoCity se aplicará automáticamente a su próxima factura."
+    },
+    {
+      "audio_sha256": "8128639a1ec35b60cee6300381fe7bed18d61af8fb761ff64f674781ffafa42a",
+      "language": "es",
+      "sentence_id": "ENT-014",
+      "status": "ok",
+      "text": "El cargo corresponde a un servicio adicional de TEP que se activó el vacío de septiembre."
+    },
+    {
+      "audio_sha256": "75655725faaf23c20c1c79f39d13d19752192d2efff469bcfb2cb1dea66849f4",
+      "language": "es",
+      "sentence_id": "ENT-015",
+      "status": "ok",
+      "text": "Prefiere recibir su factura por correo electrónico o por SMES."
+    },
+    {
+      "audio_sha256": "e4b88ec6952b591fb2ad865d22b07801821109c1b8579142e6d35b4f08d6a754",
+      "language": "es",
+      "sentence_id": "ENT-016",
+      "status": "ok",
+      "text": "Lamento mucho los inconvenientes, señor Ramírez, y le ofrezco una disculpa a nombre de la empresa."
+    },
+    {
+      "audio_sha256": "30cd0754169f16ca4b1a8bf4f2ca3492fb0fe2416c63337b4e5878b82eb89ab6",
+      "language": "es",
+      "sentence_id": "ENT-017",
+      "status": "ok",
+      "text": "voy a registrar subcra ahora mismo el número de radicado es"
+    },
+    {
+      "audio_sha256": "34b306b34fff2afb0f0ba7b00f639a97632342932c1addfd69dff32e6aeb7026",
+      "language": "es",
+      "sentence_id": "ENT-018",
+      "status": "ok",
+      "text": "Su inconformidad es completamente comprensible y le garantizo que la solucionaremos hoy mismo."
+    },
+    {
+      "audio_sha256": "17cbbff38af1f510ddf39231b8d934f101922c9d12420e17b99081dc37682145",
+      "language": "es",
+      "sentence_id": "ENT-019",
+      "status": "ok",
+      "text": "Le pido un momentico mientras reviso qué fue lo que pasó con su servicio."
+    },
+    {
+      "audio_sha256": "216917fc9dbd7486b71bf95abfcbf5686797daa597bcf87f3e229441e1cdf6f3",
+      "language": "es",
+      "sentence_id": "ENT-020",
+      "status": "ok",
+      "text": "Un especialista se comunicará con usted en un plazo máximo de BMI o de valores hábiles para darle una respuesta definitiva."
+    },
+    {
+      "audio_sha256": "4f4eea6ff538ca4d53a7a11c5082c87a8a4335a5ee79c970dc6b4de702eb2c07",
+      "language": "es",
+      "sentence_id": "ENT-021",
+      "status": "ok",
+      "text": "Por favor, apague el módem, espere 10 segundos y vuelva a encenderlo."
+    },
+    {
+      "audio_sha256": "634d845ddfc072700aee0c2b4cfb017e23505fd2292dfa6988d10ffcddc94f55",
+      "language": "es",
+      "sentence_id": "ENT-022",
+      "status": "ok",
+      "text": "Me cuenta si la luz roja del router sigue parpadeando."
+    },
+    {
+      "audio_sha256": "086518f63053bd7d554f44c38f790f1b904696b2c8502d1b90cb0a89f3016ae6",
+      "language": "es",
+      "sentence_id": "ENT-023",
+      "status": "ok",
+      "text": "Vos tenés que mantener presionado el botón de reinicio durante 10 segundos."
+    },
+    {
+      "audio_sha256": "9da9990c11d129f7a11935ac012037dc9bf736be4ed9b1f810029c9c2e39df5a",
+      "language": "es",
+      "sentence_id": "ENT-024",
+      "status": "ok",
+      "text": "Programo una visita técnica para el miércoles-vemo de noviembre entre las vacía y las vacía de la tarde."
+    },
+    {
+      "audio_sha256": "acc36ac54d25a836efb501ce9a2638c80c21d0a71dc54affd37eb19f6cc45e92",
+      "language": "es",
+      "sentence_id": "ENT-025",
+      "status": "ok",
+      "text": "Si el problema continúa, llame de nuevo a la línea paciente CIEP. Si el CIEP ve o pregunte por su caso."
+    },
+    {
+      "audio_sha256": "e53238fae5a5afb46d776bc4cef02ce4c5eb86f409e71579b05aaea1f9e2bfb0",
+      "language": "es",
+      "sentence_id": "ENT-026",
+      "status": "ok",
+      "text": "Con gusto le ayudo a cambiar de plan. ¿Cuál le interesa? ¿El de Basiat Yov o el de Bemesovir?"
+    },
+    {
+      "audio_sha256": "1bf31128e97cc0bbf1cb88c6f271adcae13ff918c5f8107336f6b889296ae64a",
+      "language": "es",
+      "sentence_id": "ENT-027",
+      "status": "ok",
+      "text": "El cambio de plan se refleja en su próxima facturación y no tiene ningún costo."
+    },
+    {
+      "audio_sha256": "309dc9f9362e43ee6e397707c974637444af4185ec177b7acb014f0130f08f59",
+      "language": "es",
+      "sentence_id": "ENT-028",
+      "status": "ok",
+      "text": "Su nuevo plan costará $1,000,000. Haga citos inmensuales a partir del 3 de diciembre."
+    },
+    {
+      "audio_sha256": "8f7894779c89e31b98cec367fc639b9a565e5ecd1a6bc7d1137e861b2888c657",
+      "language": "es",
+      "sentence_id": "ENT-029",
+      "status": "ok",
+      "text": "Ojo, que si cambia un plan más económico, pierde los efectos extra de bono."
+    },
+    {
+      "audio_sha256": "5287cfd90e7d04252bdc5697fd6e4ba9ca6219add9fd7df313a3a23d456ef921",
+      "language": "es",
+      "sentence_id": "ENT-030",
+      "status": "ok",
+      "text": "Confirma que desea realizar el cambio de plan, sí o no."
+    },
+    {
+      "audio_sha256": "3580ba70a316cc96789a9c4fb1a7af85716d01820dce0959e1a5d1c888972d57",
+      "language": "es",
+      "sentence_id": "ENT-031",
+      "status": "ok",
+      "text": "hay algo más en lo que le pueda colaborar."
+    },
+    {
+      "audio_sha256": "e27521924440a6b6d56a361da0d50baef4c5f0e465b83e5da2eb34d2fcc37725",
+      "language": "es",
+      "sentence_id": "ENT-032",
+      "status": "ok",
+      "text": "Gracias por llamar. Que Dios le bendiga."
+    },
+    {
+      "audio_sha256": "bf712100ef1ae4c32008d139682bcfbf790de76898ffcf9d3bc9bb3e0fd7f385",
+      "language": "es",
+      "sentence_id": "ENT-033",
+      "status": "ok",
+      "text": "Que tenga muy buena tarde."
+    },
+    {
+      "audio_sha256": "d924350ef8ed77d1e41c7bb0a068770011ee1b1298a1adfba1860a0791f3f544",
+      "language": "es",
+      "sentence_id": "ENT-034",
+      "status": "ok",
+      "text": "Le recuerdo que esta llamada fue grabada. Si desea calificar la atención, quédese en línea después de la despedida y marque que quedó satisfecho con el servicio."
+    },
+    {
+      "audio_sha256": "2acca289538c999ea405ea898129ec958d7d3c057708c57cd29d61499628a662",
+      "language": "es",
+      "sentence_id": "ENT-035",
+      "status": "ok",
+      "text": "Hasta pronto, Catalina. Fue un gusto atenderte."
+    },
+    {
+      "audio_sha256": "66b7b86dd466dccb33749feb40d7d9e59cb67de6897c551e427600eb6d5f5026",
+      "language": "es",
+      "sentence_id": "ENT-036",
+      "status": "ok",
+      "text": "Le informo que, de acuerdo con la Ley de Protección de Datos Personales, la información de esta llamada será almacenada y utilizada solamente para mejorar la calidad de nuestro servicio y atender su solicitud."
+    },
+    {
+      "audio_sha256": "1fe770986d66c3abb174ddd90a8b57fb563a60df3a46fabe5dce9b5601e2d458",
+      "language": "es",
+      "sentence_id": "ENT-037",
+      "status": "ok",
+      "text": "Para continuar, necesito su autorización para consultar su historial de pagos en las centrales de riesgo. Me la concede."
+    },
+    {
+      "audio_sha256": "46ceeb61936ba35a604fce3c9b436dedbfde0954fdd650afb2648799478baee5",
+      "language": "es",
+      "sentence_id": "ENT-038",
+      "status": "ok",
+      "text": "Claro que sí, con gusto."
+    },
+    {
+      "audio_sha256": "582da12e9cc8f7611a54ac221ecdc1cfb743b3bded30e59e4ed39bc0d622ee6f",
+      "language": "es",
+      "sentence_id": "ENT-039",
+      "status": "ok",
+      "text": "Permítame un segundo."
+    },
+    {
+      "audio_sha256": "bcfc6ed2030fe91ba15db81a79949162541af9c27df269ec65e7745f4a238ba9",
+      "language": "es",
+      "sentence_id": "ENT-040",
+      "status": "ok",
+      "text": "Contame qué fue lo que te pasó con el servicio."
+    },
+    {
+      "audio_sha256": "c0bbd0e9074b4fb594445b56bfa54e9e50304b0e584b6eb18be7d63ec1ad61ce",
+      "language": "es",
+      "sentence_id": "VEN-001",
+      "status": "ok",
+      "text": "Buenos días, hablo con la señora Marcela Quintero. Le habla Laura, de Mobilar, y la llamo para contarle de una recarga con beneficios."
+    },
+    {
+      "audio_sha256": "7cb646620b3ce67b645756fc54ea0df0a78ecddce23f09561b8fffc82d538c88",
+      "language": "es",
+      "sentence_id": "VEN-002",
+      "status": "ok",
+      "text": "Con su línea prepago puede recargar desde el abadre. Sintoxir y recibir el doble de datos durante todo el fin de semana."
+    },
+    {
+      "audio_sha256": "804036d47693f06400b70583d992ac204421e370da1a6e1f7f65bbd3ec60965e",
+      "language": "es",
+      "sentence_id": "VEN-003",
+      "status": "ok",
+      "text": "Si recarga, da diabetes. Si dos y dos y. Le regalamos de datos y redes sociales imitadas por Corbett Díaz."
+    },
+    {
+      "audio_sha256": "636a50235ecbe3aadd66dae4b060abf3c0c81eca6e8fd626d5a2fb27ef6e84cc",
+      "language": "es",
+      "sentence_id": "VEN-004",
+      "status": "ok",
+      "text": "Listo. Su línea de suavización se ha desechado. BaciaPAL queda activa ahora mismo. Le parece bien."
+    },
+    {
+      "audio_sha256": "479ad9b736f2dec25fcba7e90b413db3120f4ba088a41a5b483bb9ff336d9cb6",
+      "language": "es",
+      "sentence_id": "VEN-005",
+      "status": "ok",
+      "text": "Nuestro plan pospago incluye minutos ilimitados, mensajes de texto y un SIL de datos por la devolución."
+    },
+    {
+      "audio_sha256": "9bdc4d92983aee48229a2bfff70b7372cf51ff78d5fa290d161dbe186bbc2523",
+      "language": "es",
+      "sentence_id": "VEN-006",
+      "status": "ok",
+      "text": "Con el plan pospago usted recibe una sola factura al mes y puede pagarla por la aplicación, en una tienda o con débito automático, sin ningún costo adicional."
+    },
+    {
+      "audio_sha256": "d74c3ac5953930706b07eae4a5a64256005ec83eb6a75de582172959feaced05",
+      "language": "es",
+      "sentence_id": "VEN-007",
+      "status": "ok",
+      "text": "El cargo fijo mensual es de dar a Bacrena."
+    },
+    {
+      "audio_sha256": "72fe9b01455a95571e47ecd577b357290513d636bbc6a77c5d19aea29a5d7d5d",
+      "language": "es",
+      "sentence_id": "VEN-008",
+      "status": "ok",
+      "text": "Regálame un minútico y te explico cómo funciona el plan."
+    },
+    {
+      "audio_sha256": "ebe4e5ae4cc7320d18c83e8e01b4b0291b108f04fb8e2c6fe71457a71dd4a5b1",
+      "language": "es",
+      "sentence_id": "VEN-009",
+      "status": "ok",
+      "text": "Si se pasa a mobilar con el mismo número, no pierde sus contactos ni cambia su línea, y la portabilidad es gratis."
+    },
+    {
+      "audio_sha256": "5e064f40b072cb49d0c146982868d443f6a8144c4b8e08d9a50f0792497ab9d2",
+      "language": "es",
+      "sentence_id": "VEN-010",
+      "status": "ok",
+      "text": "Para la portabilidad, solo necesito el número que quiere conservar y su cédula de ciudadanía."
+    },
+    {
+      "audio_sha256": "fa4e95cfd000a7918dd769828867b1803c8aae9b8c8e0aad32163bc4869c85ba",
+      "language": "es",
+      "sentence_id": "VEN-011",
+      "status": "ok",
+      "text": "recibirá un mensaje de texto del bronceau belle ambosse belle ambiosire con un código de confirmación por favor no lo comparta con nadie"
+    },
+    {
+      "audio_sha256": "2a0322d588250e749263d1529e9a4192f8f72262d4047b7fdfad2e1225dc8093",
+      "language": "es",
+      "sentence_id": "VEN-012",
+      "status": "ok",
+      "text": "La portabilidad tarda máximo día a días hábiles y su línea actual sigue funcionando hasta ese momento."
+    },
+    {
+      "audio_sha256": "0a268834fe40a94766daeba6fb6084577e8f436d4687b4601afe690622910f81",
+      "language": "es",
+      "sentence_id": "VEN-013",
+      "status": "ok",
+      "text": "Este mes tenemos el celular Zafiro AAKERB AAKME con pantalla de vacío. Ve pulgadas por vado brotorajal. No ha distido de AAKOPA sin interés."
+    },
+    {
+      "audio_sha256": "53758e20188587a262c9f2911f6b34671738ad3a95549dc8afaea042aa913dc9",
+      "language": "es",
+      "sentence_id": "VEN-014",
+      "status": "ok",
+      "text": "Si lo compra con su plan, le regalamos los audífonos inalámbricos y el protector de pantalla."
+    },
+    {
+      "audio_sha256": "6352d08bcb1324c5ef02296220556f65878450289d4f2e8a34f6d3b114a84069",
+      "language": "es",
+      "sentence_id": "VEN-015",
+      "status": "ok",
+      "text": "¿Le gustaría ver los colores disponibles? Tenemos negro, azul y verde."
+    },
+    {
+      "audio_sha256": "74a8b894d3fe4555ce5a96c4942b2873e50efe45b800708ac7c2ada4ecb5f732",
+      "language": "es",
+      "sentence_id": "VEN-016",
+      "status": "ok",
+      "text": "Vos podés recoger el celular hoy mismo en la tienda más cercana."
+    },
+    {
+      "audio_sha256": "a23667589306602f425f7f2d273e5260970f323491d8e6fa2657274f3b641797",
+      "language": "es",
+      "sentence_id": "VEN-017",
+      "status": "ok",
+      "text": "Con la fibra óptica de Mobilar usted navega a Econes Científicos Porpétricos por Radio Nuestro León."
+    },
+    {
+      "audio_sha256": "548f8525bd2974f860d2facef497cd7bf87fcc8713a70b4fc5bad7fc047d7c8f",
+      "language": "es",
+      "sentence_id": "VEN-018",
+      "status": "ok",
+      "text": "La instalación es gratis y un técnico llegaría el jueves, febrés a día de noviembre entre las 4 de la mañana y las 5 de la mediodía."
+    },
+    {
+      "audio_sha256": "5a94d6823c36287cb8202984df03b135459ead67eae90ddabf06064f27b178be",
+      "language": "es",
+      "sentence_id": "VEN-019",
+      "status": "ok",
+      "text": "El router Wi-Fi viene incluido y permite conectar hasta baspaguisar el dispositivo simultáneamente, sin que la conexión se ponga lenta cuando varias personas la usan al tiempo."
+    },
+    {
+      "audio_sha256": "8212319b7377141fe15a83be7344417d0922e2b68e65e315d10e29128454d302",
+      "language": "es",
+      "sentence_id": "VEN-020",
+      "status": "ok",
+      "text": "Para verificar la cobertura en su barrio, me confirma la dirección completa con el número de la casa."
+    },
+    {
+      "audio_sha256": "33f6e76b1530f9b7500f4f95ee1731577eeb640e01a1d8d0f7782b20f7c20a61",
+      "language": "es",
+      "sentence_id": "VEN-021",
+      "status": "ok",
+      "text": "Como usted lleva más de vacianas con nosotros, tiene derecho a renovar su equipo con descuento."
+    },
+    {
+      "audio_sha256": "62e6efd6ce4bbc62ca0a5ef540d6bf2b74e5c49a38d0772cace2bd4402dc10ba",
+      "language": "es",
+      "sentence_id": "VEN-022",
+      "status": "ok",
+      "text": "Le podemos subir de Precine a Bemocio de datos pagando solamente Saravente."
+    },
+    {
+      "audio_sha256": "05bfa4dff87def57ec534ce8d95a9157a8d204790e61f5909901762b3fc778e3",
+      "language": "es",
+      "sentence_id": "VEN-023",
+      "status": "ok",
+      "text": "Ya tiene cobertura VNO en su zona, así que puede navegar mucho más rápido desde su casa."
+    },
+    {
+      "audio_sha256": "a5fedb1d22111985a8b62fd603277f91f1bf54fe46e9454c51e4cd3c81f0092d",
+      "language": "es",
+      "sentence_id": "VEN-024",
+      "status": "ok",
+      "text": "¿Quiere que le deje la mejora lista desde hoy o prefiere pensarlo con calma?"
+    },
+    {
+      "audio_sha256": "4f823978a59580cb2119cf7bd3e747337ddd2e8698420c843a178b2bbf4788dd",
+      "language": "es",
+      "sentence_id": "VEN-025",
+      "status": "ok",
+      "text": "el valor total es de garexave va se apredeci si lo paga de contado o va sea mejo cuotas de gardazal va si vas va"
+    },
+    {
+      "audio_sha256": "bae8930e6cd6b45db7e8357155088ea21c60aff6e9d979f08b28aa15430434c2",
+      "language": "es",
+      "sentence_id": "VEN-026",
+      "status": "ok",
+      "text": "Recuerde que el precio no incluye el costo de envío que son dado del RE."
+    },
+    {
+      "audio_sha256": "cffbe0d12bd2c7d6f5d05fb26dee749b107843f59684bf8375015d377b6eda46",
+      "language": "es",
+      "sentence_id": "VEN-027",
+      "status": "ok",
+      "text": "Hoy tenemos un descuento del vacío de 100 más en el cargo fijo, que equivale a 10,000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000"
+    },
+    {
+      "audio_sha256": "078fb21d0f2a9cb2a9c64141a026e07b1cda1502da896c8017ef0aa67c9d2665",
+      "language": "es",
+      "sentence_id": "VEN-028",
+      "status": "ok",
+      "text": "¿Le parece bien ese valor o prefiere que revisemos otra opción más económica?"
+    },
+    {
+      "audio_sha256": "f11719c2c63f06a3e1b69f0913a8e773c0dfed89e3f9124488ab15034a185842",
+      "language": "es",
+      "sentence_id": "VEN-029",
+      "status": "ok",
+      "text": "Entiendo perfectamente su preocupación y por eso el plan no tiene cláusula de permanencia."
+    },
+    {
+      "audio_sha256": "720ad6ff1433e9f994c9ad6e3687a486d60dc0b1db0128a596c7254124e1aff9",
+      "language": "es",
+      "sentence_id": "VEN-030",
+      "status": "ok",
+      "text": "No se preocupe, con mucho gusto lo llamo en otro momento."
+    },
+    {
+      "audio_sha256": "9366cb48ca41655f231503d778f7d590a812eee43f15683842be6eca9afdff03",
+      "language": "es",
+      "sentence_id": "VEN-031",
+      "status": "ok",
+      "text": "Tranquilo, te entiendo. La plata hoy rinde poco, y por eso te propongo un plan más económico."
+    },
+    {
+      "audio_sha256": "c24b14a1cc9ac191044caa82aed6bbd4a2994fe374f56720e924365e22ef2c99",
+      "language": "es",
+      "sentence_id": "VEN-032",
+      "status": "ok",
+      "text": "Si ahora no puede, le parece que lo llame mañana a Las Vejo."
+    },
+    {
+      "audio_sha256": "cf40b2ebc939b1dbb995314624c4a6c74abb49bd0b5098d6d5714e15d9f5af3e",
+      "language": "es",
+      "sentence_id": "VEN-033",
+      "status": "ok",
+      "text": "Hola, Camilo, te habla Valentina Ríos de Mobilar. ¿Tienes un momentico para contarte una promoción?"
+    },
+    {
+      "audio_sha256": "5158c54ad7b3b3ef03cf1be316dcdf60ed878c36462b67cd7ad8b3c53ea9e649",
+      "language": "es",
+      "sentence_id": "VEN-034",
+      "status": "ok",
+      "text": "es el gwenisidisiositisnitie yimbemememel que quieres conservar"
+    },
+    {
+      "audio_sha256": "d46b7fd32a67273f0dd7aab107b29ccce0c5873beb6bba4178184ec8d39bdb65",
+      "language": "es",
+      "sentence_id": "VEN-035",
+      "status": "ok",
+      "text": "Don Hernán, le confirmo que el contrato de fibra no cobra ningún cargo de reconexión."
+    },
+    {
+      "audio_sha256": "3841994fdcfdafe5eae35f720129dbf90b2c4aa7d01ad66f5cca15e4175220f1",
+      "language": "es",
+      "sentence_id": "VEN-036",
+      "status": "ok",
+      "text": "Le informo que esta llamada está siendo grabada con fines de calidad y que sus datos serán tratados conforme a nuestra política de privacidad, que puede consultar en nuestra página web."
+    },
+    {
+      "audio_sha256": "669bf56216be2477a47ffd780e3008ee3b0585965dcb1ece2f4f59b3b9d9c6dc",
+      "language": "es",
+      "sentence_id": "VEN-037",
+      "status": "ok",
+      "text": "Antes de continuar, le recuerdo que usted puede pedirnos en cualquier momento que no lo volvamos a llamar para ofrecerle productos, y que su decisión no afectará los servicios que ya tiene con nosotros."
+    },
+    {
+      "audio_sha256": "9841f4efa1cc5938bdf96e0622538454d3f2d4b5cd44eee5226a5ab9697229b6",
+      "language": "es",
+      "sentence_id": "VEN-038",
+      "status": "ok",
+      "text": "Claro que sí."
+    },
+    {
+      "audio_sha256": "dee4529e50811e345e2cb8ba445e80bd8cafb91472647df38f057a06e2cd893b",
+      "language": "es",
+      "sentence_id": "VEN-039",
+      "status": "ok",
+      "text": "Con mucho gusto."
+    },
+    {
+      "audio_sha256": "cd008897e17965e8cfd55ac3dc9ef7b5af01780d878cbbc39eb648f32e829887",
+      "language": "es",
+      "sentence_id": "VEN-040",
+      "status": "ok",
+      "text": "Entiendo, no hay problema."
+    },
+    {
+      "audio_sha256": "d4e2ff57202a4dcb7b3a2e6fcf39b486e8d62f1162fbf4d2b75649534512aa65",
+      "language": "es",
+      "sentence_id": "VEN-041",
+      "status": "ok",
+      "text": "¿Le suena bien?"
+    },
+    {
+      "audio_sha256": "a450a1e46c9517db15cbb22dbe3309992dc66b6431731e8cb8161e83f8487549",
+      "language": "es",
+      "sentence_id": "VEN-042",
+      "status": "ok",
+      "text": "Mira, si te pasas hoy, no pagas cargo de conexión y el primer mes sale con descuento."
+    }
+  ]
+}
