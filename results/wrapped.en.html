@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TTS Wrapped · Piper vs Phonon vs Pocket TTS</title>
+<style>
+:root{--phonon:#1ed760;--pocket:#ff4fa3;--piper:#ffb020;--ink:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:#000;overflow-x:hidden}
+section{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px 24px;position:relative;overflow:hidden}
+section>*{position:relative;z-index:1;max-width:980px;width:100%}
+.s1{background:linear-gradient(135deg,#1db954,#191414 70%)}
+.s2{background:linear-gradient(160deg,#5b1fff,#ff4fa3)}
+.s3{background:linear-gradient(160deg,#052e1a,#1ed760)}
+.s4{background:linear-gradient(160deg,#2a0a4a,#7b2ff7 60%,#ff4fa3)}
+.s5{background:linear-gradient(160deg,#001f3f,#0074d9 70%,#7fdbff)}
+.s6{background:linear-gradient(160deg,#3a1c00,#ff7b00)}
+.s7{background:linear-gradient(160deg,#111,#2b2b2b 50%,#1ed760)}
+.s8{background:linear-gradient(160deg,#4a0000,#d90429)}
+.s9{background:linear-gradient(160deg,#191414,#5b1fff 60%,#1ed760)}
+.s10{background:linear-gradient(160deg,#0b0b0b,#1a1a2e)}
+.blob{position:absolute!important;border-radius:50%;filter:blur(80px);opacity:.35;z-index:0!important;width:380px!important;height:380px;animation:float 9s ease-in-out infinite}
+@keyframes float{50%{transform:translate(40px,-30px)}}
+.kicker{text-transform:uppercase;letter-spacing:.25em;font-size:.85rem;font-weight:700;opacity:.85;margin-bottom:18px}
+h1{font-size:clamp(3rem,10vw,7.5rem);line-height:.95;font-weight:900;letter-spacing:-.04em}
+h2{font-size:clamp(1.8rem,5vw,3.4rem);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:12px}
+.big{font-size:clamp(5rem,20vw,13rem);font-weight:900;letter-spacing:-.06em;line-height:.9}
+p.sub{font-size:clamp(1rem,2.2vw,1.35rem);opacity:.9;margin:14px auto 0;max-width:680px;line-height:1.4}
+.pill{display:inline-block;padding:6px 14px;border-radius:99px;font-weight:700;font-size:.85rem;background:rgba(0,0,0,.35);margin:4px}
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.2,.8,.2,1)}
+.in .reveal{opacity:1;transform:none}
+.in .reveal:nth-child(2){transition-delay:.15s}.in .reveal:nth-child(3){transition-delay:.3s}
+.in .reveal:nth-child(4){transition-delay:.45s}.in .reveal:nth-child(5){transition-delay:.6s}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:34px}
+.stat{background:rgba(0,0,0,.28);border-radius:22px;padding:26px 14px;backdrop-filter:blur(6px)}
+.stat b{display:block;font-size:3.2rem;font-weight:900;letter-spacing:-.04em}
+.stat span{opacity:.85;font-size:.95rem}
+.bars{margin-top:30px;display:grid;gap:16px;text-align:left}
+.bar{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center}
+.bar label{font-weight:800;font-size:1rem}
+.track{background:rgba(0,0,0,.3);border-radius:99px;height:44px;overflow:hidden}
+.fill{height:100%;width:0;border-radius:99px;display:flex;align-items:center;justify-content:flex-end;padding-right:14px;font-weight:900;white-space:nowrap;transition:width 1.4s cubic-bezier(.2,.8,.2,1);min-width:max-content}
+.in .fill{width:var(--w)}
+.c-phonon{background:var(--phonon);color:#04210f}.c-pocket{background:var(--pocket);color:#3a0020}.c-piper{background:var(--piper);color:#3a2400}
+.note{font-size:.85rem;opacity:.75;margin-top:14px}
+.quote{font-size:clamp(1.4rem,3.6vw,2.4rem);font-weight:800;line-height:1.2;font-style:italic;margin-top:22px;background:rgba(0,0,0,.3);padding:26px;border-radius:24px}
+.podium{display:flex;gap:14px;align-items:flex-end;justify-content:center;margin-top:34px}
+.pod{flex:1;max-width:240px;border-radius:20px 20px 0 0;padding:18px 10px;font-weight:900;display:flex;flex-direction:column;justify-content:flex-end;transform:scaleY(0);transform-origin:bottom;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.in .pod{transform:none}
+.pod small{display:block;font-weight:600;opacity:.8;font-size:.8rem;margin-top:4px}
+.pod .n{font-size:3rem}
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:30px;text-align:left}
+.award{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:18px}
+.award i{font-style:normal;font-size:2rem}
+.award h3{font-size:1rem;margin:6px 0 2px}
+.award p{font-size:.85rem;opacity:.85}
+.award b{color:var(--phonon)}
+table{width:100%;border-collapse:collapse;margin-top:26px;text-align:left;font-size:.95rem}
+th,td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,.15)}
+th{opacity:.7;text-transform:uppercase;font-size:.75rem;letter-spacing:.1em}
+ol.next{text-align:left;margin:22px auto 0;padding-left:1.4em;line-height:1.7;font-size:1.05rem;max-width:720px}
+.hint{position:absolute!important;bottom:18px;opacity:.7;font-size:.8rem;animation:bounce 1.6s infinite;width:auto!important}
+@keyframes bounce{50%{transform:translateY(8px)}}
+.dots{position:fixed;right:14px;top:50%;transform:translateY(-50%);display:grid;gap:8px;z-index:9}
+.dots a{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);display:block}
+.dots a.on{background:#fff;transform:scale(1.5)}
+@media(max-width:600px){.bar{grid-template-columns:70px 1fr}.dots{display:none}}
+</style>
+</head>
+<body>
+<nav class="dots" id="dots"></nav>
+
+<section class="s1">
+  <div class="blob" style="background:#1ed760;top:-80px;left:-80px"></div>
+  <div class="blob" style="background:#ff4fa3;bottom:-100px;right:-60px"></div>
+  <div class="reveal kicker">Real-time TTS · Spanish · call center</div>
+  <h1 class="reveal">Your TTS<br>Wrapped<br>2026</h1>
+  <p class="sub reveal">3 engines. 123 sentences. 1 cloned voice. Everything we measured, told like the highlights of your year.</p>
+  <div class="reveal" style="margin-top:22px"><span class="pill">🟢 Phonon</span><span class="pill">🩷 Pocket TTS</span><span class="pill">🟠 Piper</span></div>
+  <div class="hint">scroll ↓</div>
+</section>
+
+<section class="s2">
+  <div class="kicker reveal">Your year in numbers</div>
+  <h2 class="reveal">One machine. Zero GPU. A whole lot of voice.</h2>
+  <div class="stats reveal">
+    <div class="stat"><b data-n="123">0</b><span>sentences in the corpus</span></div>
+    <div class="stat"><b data-n="105">0</b><span>cloned syntheses per engine</span></div>
+    <div class="stat"><b data-n="0">0</b><span>failed or silent syntheses</span></div>
+    <div class="stat"><b data-n="3">0</b><span>fronts measured</span></div>
+  </div>
+  <p class="sub reveal">Apple M2 Pro · 10 cores · 16 GiB · CPU only.<br>Reference voice: <i>Valentina</i> (es-CO), with recorded consent.</p>
+</section>
+
+<section class="s3">
+  <div class="kicker reveal">Your fastest engine</div>
+  <div class="big reveal">8 ms</div>
+  <h2 class="reveal">to first audio</h2>
+  <p class="sub reveal">Phonon starts talking before you can blink. Pocket TTS takes 80 ms. Piper hands over the whole sentence at 163 ms.</p>
+  <div class="bars reveal">
+    <div class="bar"><label>🟢 Phonon</label><div class="track"><div class="fill c-phonon" style="--w:5%">8.0 ms</div></div></div>
+    <div class="bar"><label>🩷 Pocket</label><div class="track"><div class="fill c-pocket" style="--w:49%">79.6 ms</div></div></div>
+    <div class="bar"><label>🟠 Piper</label><div class="track"><div class="fill c-piper" style="--w:100%">163.5 ms</div></div></div>
+  </div>
+  <p class="note reveal">TTFA p50, warm. Piper does not stream: ~20× later than Phonon.</p>
+</section>
+
+<section class="s4">
+  <div class="kicker reveal">Your most played… and understood</div>
+  <div class="big reveal">1.4%</div>
+  <h2 class="reveal">Phonon's WER</h2>
+  <p class="sub reveal">0.0% on digit sequences. Piper closes at 2.9%. Pocket TTS needs a serious talk.</p>
+  <div class="bars reveal">
+    <div class="bar"><label>🟢 Phonon</label><div class="track"><div class="fill c-phonon" style="--w:8%">1.4%</div></div></div>
+    <div class="bar"><label>🟠 Piper</label><div class="track"><div class="fill c-piper" style="--w:12%">2.9%</div></div></div>
+    <div class="bar"><label>🩷 Pocket</label><div class="track"><div class="fill c-pocket" style="--w:100%">33.7%</div></div></div>
+  </div>
+  <p class="note reveal">Whisper large-v3 · 123 sentences · one synthesis per sentence.</p>
+</section>
+
+<section class="s8">
+  <div class="kicker reveal">Plot twist</div>
+  <h2 class="reveal">When you say "one hundred twenty thousand pesos"…</h2>
+  <div class="stats reveal">
+    <div class="stat"><b>47.4%</b><span>Pocket TTS WER on digits</span></div>
+    <div class="stat"><b>109%</b><span>WER on amounts (the recognizer loops)</span></div>
+    <div class="stat"><b>0.0%</b><span>Phonon on digits</span></div>
+  </div>
+  <p class="sub reveal">On short, plain sentences Pocket TTS is as good as the others (0.0%). Its failure is specific: exactly where a call center cannot afford it.</p>
+</section>
+
+<section class="s5">
+  <div class="kicker reveal">Your voice, your clone</div>
+  <div class="big reveal">0.666</div>
+  <h2 class="reveal">similarity to the target voice</h2>
+  <div class="bars reveal">
+    <div class="bar"><label>🟢 Phonon</label><div class="track"><div class="fill c-phonon" style="--w:100%">0.666</div></div></div>
+    <div class="bar"><label>🩷 Pocket</label><div class="track"><div class="fill c-pocket" style="--w:85.5%">0.570</div></div></div>
+    <div class="bar"><label>🟠 Piper</label><div class="track"><div class="fill c-piper" style="--w:0;min-width:130px">no cloning</div></div></div>
+  </div>
+  <p class="sub reveal">Phonon won on <b>18 of 21</b> sentences.</p>
+  <div class="quote reveal">🎧 Owner's blind test: <br>“Phonon clearly outperforms the other models. Its cloning is almost perfect.”</div>
+  <p class="note reveal">ECAPA-TDNN (1.5% EER on Spanish). One listener: it validates the ranking, it is not a statistical test.</p>
+</section>
+
+<section class="s6">
+  <div class="kicker reveal">Your consistency</div>
+  <div class="big reveal">0%</div>
+  <h2 class="reveal">variation between repetitions</h2>
+  <p class="sub reveal">Phonon is deterministic: the same sentence always sounds bit-identical. Pocket TTS varies 3.8% in duration and 4.8% in similarity (up to 18.5% on its least stable sentence).</p>
+  <div class="stats reveal">
+    <div class="stat"><b>301</b><span>MiB of RAM · Phonon</span></div>
+    <div class="stat"><b>769</b><span>MiB · Piper</span></div>
+    <div class="stat"><b>1807</b><span>MiB · Pocket TTS</span></div>
+  </div>
+  <p class="note reveal">Phonon also uses 20% of one core (Pocket 167%, Piper 489%).</p>
+</section>
+
+<section class="s7">
+  <div class="kicker reveal">Piper, the sprinter</div>
+  <h2 class="reveal">Raw speed: 33.8 seconds of audio per second</h2>
+  <div class="stats reveal">
+    <div class="stat"><b>0.029</b><span>Piper's RTF (the lowest)</span></div>
+    <div class="stat"><b>37 ms</b><span>to load the model</span></div>
+    <div class="stat"><b>2.9%</b><span>WER, light and intelligible</span></div>
+  </div>
+  <p class="sub reveal">The dependable one: it reads numbers well (1.6%) and starts instantly. But it does not clone the voice, it is Mexican Spanish, and the engine is GPL-3.0.</p>
+</section>
+
+<section class="s9">
+  <div class="kicker reveal">Your awards of the year</div>
+  <h2 class="reveal">The Wrapped Awards</h2>
+  <div class="awards reveal">
+    <div class="award"><i>⚡</i><h3>First sound</h3><p><b>Phonon</b> · 8 ms</p></div>
+    <div class="award"><i>🎯</i><h3>Most intelligible</h3><p><b>Phonon</b> · 1.4% WER</p></div>
+    <div class="award"><i>🎭</i><h3>Best clone</h3><p><b>Phonon</b> · 0.666, 18/21 sentences</p></div>
+    <div class="award"><i>🪶</i><h3>Lightest</h3><p><b>Phonon</b> · 301 MiB</p></div>
+    <div class="award"><i>🏎️</i><h3>Raw speed</h3><p><b style="color:var(--piper)">Piper</b> · RTF 0.029</p></div>
+    <div class="award"><i>📜</i><h3>Commercial license</h3><p><b style="color:var(--pocket)">Pocket TTS</b> · MIT</p></div>
+  </div>
+  <div class="podium reveal">
+    <div class="pod c-piper" style="height:150px;transition-delay:.2s"><span class="n">2</span>Piper<small>no cloning</small></div>
+    <div class="pod c-phonon" style="height:230px"><span class="n">1</span>Phonon<small>1st on 7 of 9 fronts</small></div>
+    <div class="pod c-pocket" style="height:110px;transition-delay:.4s"><span class="n">3</span>Pocket TTS<small>last on 5 of 9</small></div>
+  </div>
+</section>
+
+<section class="s10">
+  <div class="kicker reveal">The fine print</div>
+  <h2 class="reveal">Phonon wins at everything… except the license 📜</h2>
+  <p class="sub reveal">Its weights are CC BY-NC 4.0 (non-commercial). The decision depends on the intended use:</p>
+  <table class="reveal">
+    <tr><th>Intended use</th><th>Engine</th><th>Condition</th></tr>
+    <tr><td>Evaluation, demos, research</td><td><b style="color:var(--phonon)">Phonon</b></td><td>Within CC BY-NC and the recorded consent</td></tr>
+    <tr><td>Commercial with cloned voice</td><td><b style="color:var(--phonon)">Phonon + commercial license</b></td><td>If unavailable: Pocket TTS, after fixing numbers and amounts</td></tr>
+    <tr><td>Commercial without cloning</td><td><b style="color:var(--piper)">Piper</b></td><td>Accept GPL-3.0 and a non-Colombian voice</td></tr>
+  </table>
+  <h2 class="reveal" style="margin-top:44px;font-size:1.6rem">Your 2027 in TTS</h2>
+  <ol class="next reveal">
+    <li>Resolve Phonon's license.</li>
+    <li>Extend the listening check to more listeners.</li>
+    <li>Repeat syntheses to put an interval on Pocket TTS's WER.</li>
+    <li>Test whether writing numbers as words rescues Pocket TTS.</li>
+    <li>Measure on an idle machine and with concurrent calls.</li>
+    <li>Add more consented voices.</li>
+  </ol>
+  <p class="note reveal">Figures from <code>engine-selection.md</code> and the perf, intelligibility and speaker reports. One machine, single runs: read the limits in the full report.</p>
+</section>
+
+<script>
+const secs=[...document.querySelectorAll('section')];
+const dots=document.getElementById('dots');
+secs.forEach((s,i)=>{const a=document.createElement('a');a.href='#';a.onclick=e=>{e.preventDefault();s.scrollIntoView()};dots.appendChild(a)});
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.classList.add('in');
+    const i=secs.indexOf(e.target);[...dots.children].forEach((d,j)=>d.classList.toggle('on',i===j));
+    e.target.querySelectorAll('[data-n]').forEach(el=>{
+      if(el.dataset.done)return;el.dataset.done=1;
+      const t=+el.dataset.n,st=performance.now();
+      (function f(n){const p=Math.min((n-st)/1200,1);el.textContent=Math.round(t*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(st);
+    });
+  }
+}),{threshold:.5});
+secs.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
