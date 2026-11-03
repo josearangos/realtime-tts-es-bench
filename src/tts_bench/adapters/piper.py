@@ -37,11 +37,14 @@ class PiperAdapter(BaseAdapter):
             weights_hint="Run: python3 -m piper.download_voices --download-dir cloned_voices es_MX-claude-high",
         )
 
-    def _load(self) -> None:
+    def check_ready(self) -> None:
         try:
             import piper  # noqa: F401
         except ImportError as exc:
             raise EngineNotInstalledError("piper", _INSTALL) from exc
+
+    def _load(self) -> None:
+        self.check_ready()
         self.descriptor = _with_version(self.descriptor, version("piper-tts"))
         self._ready = True
 

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import os
 from importlib.metadata import version
+from pathlib import Path
 from typing import Iterator
 
 import numpy as np
@@ -10,6 +12,19 @@ from ..core.descriptor import EngineDescriptor, InputLimits, StreamingInfo
 from ..core.errors import EngineNotInstalledError, WeightsMissingError
 from ..core.voices import VoiceReference
 from .phonon import _with_version
+
+def _hf_hub_cache() -> Path | None:
+    """Hugging Face hub cache folder from the environment, without importing or contacting HF."""
+    try:
+        explicit = os.environ.get("HF_HUB_CACHE")
+        if explicit:
+            return Path(explicit)
+        home = os.environ.get("HF_HOME")
+        base = Path(home) if home else Path.home() / ".cache" / "huggingface"
+        return base / "hub"
+    except (RuntimeError, OSError):
+        return None
+
 
 _INSTALL = "Run: pip install -e '.[pocket]' (in its own virtual environment)."
 _GATED = (
@@ -40,6 +55,15 @@ class PocketTTSAdapter(BaseAdapter):
             install_hint=_INSTALL,
             weights_hint="Weights download from Hugging Face on first load; keep them cached for offline use.",
         )
+
+    def check_ready(self) -> None:
+        try:
+            import pocket_tts  # noqa: F401
+        except ImportError as exc:
+            raise EngineNotInstalledError("pocket_tts", _INSTALL) from exc
+        hub = _hf_hub_cache()
+        if hub is not None and not any(hub.glob("models--kyutai--pocket-tts*")):
+            raise WeightsMissingError("pocket_tts", self.descriptor.weights_hint)
 
     def _load(self) -> None:
         try:

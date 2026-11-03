@@ -40,13 +40,17 @@ class PhononAdapter(BaseAdapter):
             weights_hint=_WEIGHTS,
         )
 
-    def _load(self) -> None:
+    def check_ready(self) -> None:
         try:
-            import ptts
+            import ptts  # noqa: F401
         except ImportError as exc:
             raise EngineNotInstalledError("phonon", _INSTALL) from exc
         if not self.model_dir.is_dir():
             raise WeightsMissingError("phonon", f"Expected {self.model_dir}/. {_WEIGHTS}")
+
+    def _load(self) -> None:
+        self.check_ready()
+        import ptts
         from importlib.metadata import version
 
         self.descriptor = _with_version(self.descriptor, version("ptts"))

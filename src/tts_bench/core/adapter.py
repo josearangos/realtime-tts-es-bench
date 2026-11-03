@@ -60,6 +60,11 @@ class BaseAdapter:
             if _LOADED == self.descriptor.name:
                 _LOADED = None
 
+    def check_ready(self) -> None:
+        """Cheap readiness check that never loads a model or touches the network.
+
+        Raises EngineNotInstalledError / WeightsMissingError; the default does nothing."""
+
     # -- hooks -----------------------------------------------------------
     def _load(self) -> None:
         raise NotImplementedError
