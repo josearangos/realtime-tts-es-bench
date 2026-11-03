@@ -46,3 +46,4 @@ Changing a definition above requires a spec update, a `schema_version` bump, and
 
 - [Intelligibility metrics (WER and CER)](intelligibility.md)
 - [Speaker similarity and consistency metrics](speaker-similarity.md)
+- [Real-time synthesis backend](backend.md) (interactive figures, not benchmark results)
