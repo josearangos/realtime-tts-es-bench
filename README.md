@@ -4,6 +4,12 @@ Benchmark of real-time Spanish text-to-speech engines for call center use.
 
 ![TTS Wrapped: Piper vs Phonon vs Pocket TTS](docs/assets/tts-wrapped.gif)
 
+### Frontend demo
+
+[![Frontend tour: one script, three engines](docs/assets/demo-peluditos.gif)](docs/assets/demo-peluditos.mp4)
+
+A tour of the real-time frontend: every option, the same pet-insurance script synthesized with `phonon`, `piper` and `pocket_tts`, and a walkthrough of the three comparison charts. The GIF is silent; [watch the full video with Spanish narration](docs/assets/demo-peluditos.mp4) (voice `valentina-phonon`, es-CO). Figures shown are interactive measurements, not benchmark results. Music: Sascha Ende, [ende.app](https://ende.app/en) (CC BY 4.0).
+
 The animation above summarizes the results. Interactive version: [`results/wrapped.en.html`](results/wrapped.en.html). Full analysis: [`results/engine-selection.md`](results/engine-selection.md).
 
 - [Engines](docs/engines.md) and [adding an engine](docs/adding-an-engine.md)
