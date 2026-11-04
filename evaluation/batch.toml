@@ -1,0 +1,13 @@
+# Human-evaluation batch definition (feature 009). Frozen once `prepare` writes batch.json.
+seed = 20261104
+sentences_per_condition = 20
+repeat_rate = 0.10          # share of extra repeated items (0 to 0.3)
+attention_rate = 0.05       # share of attention checks (0 to 0.2)
+loudness_rms_dbfs = -23
+peak_limit_dbfs = -1
+conditions = []             # [{engine = "piper", voice = "es_MX-claude-high"}]; empty = every discovered condition
+cmos_pairs = "all"          # "all" or [[ "engine/voice", "engine/voice" ]]
+
+[quality_thresholds]
+repeat_within_1_min = 0.7
+max_failed_checks = 1

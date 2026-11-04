@@ -57,3 +57,24 @@
 
 ## R13 — Offline operation
 - **Decision**: no image pulls at `up` (`pull_policy: never` for the built image once present; `eval-up` uses `docker compose up -d --build` only when the image is missing), no CDN assets (Label Studio ships its UI), provisioner uses no network beyond the compose network.
+
+## R14 — Verified against 1.23.2
+Method: the `label-studio==1.23.2` sdist from PyPI was downloaded and its source read (the Docker daemon was not available on the implementation host, so nothing below was observed on a running container; the opt-in `docker` tests re-check it). The official image is built from this same source. **Edition**: `VERSION_EDITION = 'Community'`; nothing used below is Enterprise-only.
+
+| Need | Verified name / endpoint |
+|---|---|
+| Env prefix | `get_env` accepts `LABEL_STUDIO_<NAME>`, `HEARTEX_<NAME>` or `<NAME>` |
+| Admin user / password / token | `LABEL_STUDIO_USERNAME`, `LABEL_STUDIO_PASSWORD`, `LABEL_STUDIO_USER_TOKEN` (read by `server.py::_create_user`) |
+| Token auth header | `Authorization: Token <token>` (legacy token). `LABEL_STUDIO_ENABLE_LEGACY_API_TOKEN=true` set to be safe |
+| Sign-up | `LABEL_STUDIO_DISABLE_SIGNUP_WITHOUT_LINK=true` |
+| Telemetry / update check | `LABEL_STUDIO_COLLECT_ANALYTICS=false`, `LABEL_STUDIO_LATEST_VERSION_CHECK=false` (offline) |
+| Local files serving | `LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED=true`, `LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT=<dir>`; URL `/data/local-files/?d=<path relative to the root>` |
+| **Storage registration is required** | `localfiles_data` serves a file only to an authenticated user and only if its directory is inside a `LocalFilesImportStorage.path` of a project the user can access. So each project gets one Local files storage via `POST /api/storages/localfiles` (`{project, title, path, use_blob_urls:false}`), never synced (no auto-import). Verified on a running 1.23.0 server: the storage path must be strictly *inside* the document root (equal paths are rejected with HTTP 400). Decision: `LOCAL_FILES_DOCUMENT_ROOT=/label-studio/files`, served dir mounted at `/label-studio/files/served`, storage path = that dir, task URLs `?d=served/<12hex>.wav` |
+| Health | `GET /health` → `{"status":"UP"}` |
+| Projects | `GET/POST /api/projects` (`title`, `label_config`, `expert_instruction`, `show_instruction`, `sampling`) |
+| Random order | `sampling = "Uniform sampling"` (random); other values: `Sequential sampling`, `Uncertainty sampling` (not used) |
+| Tasks | import `POST /api/projects/{id}/import?commit_to_project=true` (JSON list of `{"data":{…}}`); list `GET /api/projects/{id}/tasks/`; delete `DELETE /api/tasks/{id}` |
+| Users | `GET /api/users`, `POST /api/users` (`email`, `password`, …; the creator's organization adds the user) |
+| Annotation export | `GET /api/projects/{id}/export?exportType=JSON&download_all_tasks=true` |
+
+Consequence: the "annotators see all projects" statement stands. No Enterprise-only feature is used. Anything not observable in source (exact response shapes) is parsed defensively in `lsclient.py` and re-verified by the docker tests.

@@ -4,7 +4,11 @@ Benchmark of real-time Spanish text-to-speech engines for call center use.
 
 ![TTS Wrapped: Piper vs Phonon vs Pocket TTS](docs/assets/tts-wrapped.gif)
 
-### Frontend demo
+### Human evaluation
+
+Blind MOS / CMOS / SIM listening tests in a containerized Label Studio: `cp evaluation/.env.example evaluation/.env && make eval-up`. See [evaluation/README.md](evaluation/README.md) for operations and [docs/human-evaluation.md](docs/human-evaluation.md) for the protocol.
+
+## Frontend demo
 
 [![Frontend tour: one script, three engines](docs/assets/demo-peluditos.gif)](docs/assets/demo-peluditos.mp4)
 

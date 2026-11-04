@@ -16,7 +16,8 @@ piper = ["piper-tts"]
 asr = ["faster-whisper"]
 speaker = ["speechbrain", "torchaudio"]
 backend = ["fastapi", "uvicorn", "websockets"]
-dev = ["pytest", "httpx"]
+evaluation = ["numpy"]
+dev = ["pytest", "httpx", "pyyaml"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -24,4 +25,8 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-markers = ["engine: needs a real TTS engine installed (run in that engine's venv)"]
+markers = [
+    "engine: needs a real TTS engine installed (run in that engine's venv)",
+    "docker: needs a running Docker daemon and the Label Studio image (opt-in: pytest -m docker)",
+]
+addopts = "-m 'not docker'"

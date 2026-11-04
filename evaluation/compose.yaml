@@ -1,0 +1,59 @@
+name: tts-bench-eval
+
+services:
+  label-studio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        LS_VERSION: ${LS_VERSION:-1.23.2}
+    image: tts-bench-label-studio:${LS_VERSION:-1.23.2}
+    restart: unless-stopped
+    ports:
+      - "${LS_BIND:-127.0.0.1}:${LS_PORT:-8080}:8080"
+    environment:
+      LABEL_STUDIO_USERNAME: ${LS_ADMIN_USER:-admin@eval.invalid}
+      LABEL_STUDIO_PASSWORD: ${LS_ADMIN_PASSWORD:?set LS_ADMIN_PASSWORD in evaluation/.env}
+      LABEL_STUDIO_USER_TOKEN: ${LS_API_TOKEN:?set LS_API_TOKEN in evaluation/.env}
+      LABEL_STUDIO_ENABLE_LEGACY_API_TOKEN: "true"
+      LABEL_STUDIO_DISABLE_SIGNUP_WITHOUT_LINK: "true"
+      LABEL_STUDIO_COLLECT_ANALYTICS: "false"
+      LABEL_STUDIO_LATEST_VERSION_CHECK: "false"
+      LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED: "true"
+      LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT: /label-studio/files
+    volumes:
+      - ls-data:/label-studio/data
+      # opaque blind audio only, read-only; the private mapping is NOT mounted here
+      - ../output/evaluation/served:/label-studio/files/served:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8080/health', timeout=4)"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+      start_period: 20s
+
+  provisioner:
+    build:
+      context: ..
+      dockerfile: evaluation/provisioner.Dockerfile
+    image: tts-bench-provisioner:latest
+    profiles: ["provision"]
+    depends_on:
+      label-studio:
+        condition: service_healthy
+    environment:
+      LS_URL: http://label-studio:8080
+      LS_API_TOKEN: ${LS_API_TOKEN:?set LS_API_TOKEN in evaluation/.env}
+      EVAL_SOURCE_MANIFEST: ${EVAL_SOURCE_MANIFEST:-}
+    working_dir: /work
+    volumes:
+      - ../corpus:/work/corpus:ro
+      - ../cloned_voices:/work/cloned_voices:ro
+      - ../output/speaker:/work/output/speaker:ro
+      - ../output/intelligibility:/work/output/intelligibility:ro
+      - ../evaluation/batch.toml:/work/evaluation/batch.toml:ro
+      - ../output/evaluation:/work/output/evaluation
+    entrypoint: ["sh", "-c", "python -m tts_bench.evaluation prepare && python -m tts_bench.evaluation provision --storage-path /label-studio/files/served"]
+
+volumes:
+  ls-data:

@@ -31,3 +31,9 @@ backend.toml
 output/evaluation/
 backups/
 evaluation/.env
+
+# human evaluation exports: text outputs only (no audio, no archives)
+results/human/*
+!results/human/*.jsonl
+!results/human/*.csv
+!results/human/*.json
