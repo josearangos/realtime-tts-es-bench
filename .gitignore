@@ -24,3 +24,5 @@ output/speaker/
 # backend request log and local engine/venv config are local-only
 output/backend/
 backend.toml
+
+.archify/

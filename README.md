@@ -12,6 +12,12 @@ A tour of the real-time frontend: every option, the same pet-insurance script sy
 
 The animation above summarizes the results. Interactive version: [`results/wrapped.en.html`](results/wrapped.en.html). Full analysis: [`results/engine-selection.md`](results/engine-selection.md).
 
+## Architecture
+
+![Architecture: static frontend, FastAPI gateway, engine supervisor and per-engine workers](docs/assets/architecture.png)
+
+The static frontend streams text over WebSocket to a local FastAPI gateway. The gateway hands each request to an engine supervisor, which runs one worker subprocess per engine (`phonon`, `piper`, `pocket_tts`), each in its own virtualenv. Only authorized voices are served, and audio is streamed back as PCM and never stored.
+
 - [Engines](docs/engines.md) and [adding an engine](docs/adding-an-engine.md)
 - [Voice preparation and consent](docs/voice-preparation.md)
 - [Real-time performance metrics](docs/metrics.md): TTFA, RTF, throughput, load time, resources, and how to compare runs
