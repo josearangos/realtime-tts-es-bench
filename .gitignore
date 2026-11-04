@@ -26,3 +26,8 @@ output/backend/
 backend.toml
 
 .archify/
+
+# human evaluation: staged audio, private blind mapping, backups and env are local-only (Principle VI)
+output/evaluation/
+backups/
+evaluation/.env
