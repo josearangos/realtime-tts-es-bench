@@ -35,7 +35,7 @@ The backend URL is an editable field (kept in memory only). The page is served s
 | Queue wait, model load | `summary.queue_wait_ms`, `summary.load_ms` (tagged "includes model load" on a cold first request) |
 | Heard after | browser clock: request sent to first chunk handed to playback. Browser-side, never combined with TTFA |
 
-Values are copied, never recomputed; the page keeps the digits the backend sent. Definitions live in [metrics.md](metrics.md).
+Values are never recomputed; they are only rounded for display to at most two decimals. Each metric has a "?" tooltip explaining what it is and which direction is better. A finished panel can download the audio it played as a mono 16-bit WAV (built in the browser from the streamed chunks). Definitions live in [metrics.md](metrics.md).
 
 ## Limits and conditions
 

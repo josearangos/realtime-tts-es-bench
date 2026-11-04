@@ -1,6 +1,6 @@
 // Pure view model: decides WHAT is shown. view.js only maps it to the DOM.
 import { licenseWarning } from "./license.js";
-import { fmtMs, fmtSeconds, fmtRtf, fmtTtfa, granularityNote } from "./format.js";
+import { fmtMs, fmtSeconds, fmtRtf, fmtTtfa, granularityNote, round2, METRIC_HELP } from "./format.js";
 
 export function engineOptionModel(engine) {
   const availability = engine.availability ?? {};
@@ -76,6 +76,7 @@ export function panelModel(panel, engineMeta = null) {
       rtf: fmtRtf(summary.rtf),
       queueWait: summary.queue_wait_ms === undefined ? null : fmtMs(summary.queue_wait_ms),
       loadTime: summary.load_ms === undefined ? null : fmtMs(summary.load_ms),
+      help: METRIC_HELP,
       includesLoad: summary.first_request_after_load === true,
     };
   }
@@ -90,5 +91,52 @@ export function panelModel(panel, engineMeta = null) {
     audioBlocked: panel.audio_blocked,
     error: errorModel(panel.error),
     canReplay: panel.state === "done" && panel.chunks.length > 0,
+    canDownload: panel.state === "done" && panel.chunks.length > 0,
+    sampleRate: start.sample_rate ?? 24000,
   };
+}
+
+// Comparison across finished panels: ranked bars per metric (lower is better) and one speed-based pick.
+// Pure: bars are scaled from the backend's raw numbers; labels are rounded for display only.
+const finite = (v) => (typeof v === "number" && Number.isFinite(v) ? v : null);
+
+const COMPARE_METRICS = [
+  { id: "ttfa", title: "Time to first audio", unit: "ms", field: "ttfa", help: METRIC_HELP.ttfa, reference: null },
+  { id: "rtf", title: "Real-time factor", unit: "", field: "rtf", help: METRIC_HELP.rtf, reference: { value: 1, label: "1 = real time" } },
+  { id: "total", title: "Total time", unit: "ms", field: "total", help: METRIC_HELP.total, reference: null },
+];
+
+export function comparisonModel(panels) {
+  const rows = panels.filter((p) => p.state === "done" && p.summary).map((p) => ({
+    engine: p.engine, voice: p.start?.voice ?? p.voice ?? "",
+    ttfa: finite(p.summary.ttfa_ms), total: finite(p.summary.generation_ms), rtf: finite(p.summary.rtf),
+  }));
+  if (rows.length < 2) return null;
+  const charts = [];
+  for (const m of COMPARE_METRICS) {
+    const items = rows.filter((r) => r[m.field] !== null).sort((a, b) => a[m.field] - b[m.field]);
+    if (items.length < 2) continue;
+    const max = Math.max(...items.map((r) => r[m.field]), m.reference?.value ?? 0) || 1;
+    charts.push({
+      id: m.id, title: m.title, unit: m.unit, help: m.help,
+      reference: m.reference ? { label: m.reference.label, pct: (m.reference.value / max) * 100 } : null,
+      bars: items.map((r, i) => ({ engine: r.engine, voice: r.voice, text: round2(r[m.field]), pct: Math.max((r[m.field] / max) * 100, 1), best: i === 0 })),
+    });
+  }
+  // Pick: among engines that outrun real time, the one that starts speaking first.
+  const smooth = rows.filter((r) => r.rtf !== null && r.rtf < 1 && r.ttfa !== null);
+  const pool = smooth.length ? smooth : rows.filter((r) => r.ttfa !== null);
+  let verdict = null;
+  if (pool.length) {
+    const w = pool.reduce((a, b) => (b.ttfa < a.ttfa ? b : a));
+    const speed = w.rtf !== null && w.rtf > 0 ? ` and generates ${round2(1 / w.rtf)}× faster than real time` : "";
+    verdict = {
+      engine: w.engine, voice: w.voice,
+      reason: smooth.length
+        ? `Starts speaking after ${round2(w.ttfa)} ms${speed}.`
+        : `Starts earliest (${round2(w.ttfa)} ms), but no engine generated faster than real time, so live playback may stutter.`,
+      rule: "Pick = earliest first audio among engines that generate faster than real time. It measures speed only.",
+    };
+  }
+  return { charts, verdict, listenNote: "Speed is not quality. Use Replay on each result to judge naturalness and pronunciation before choosing." };
 }

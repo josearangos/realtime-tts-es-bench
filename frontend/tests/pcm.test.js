@@ -28,3 +28,13 @@ test("non-s16le and stereo are rejected", () => {
 });
 
 test("duration", () => assert.equal(durationSeconds(24000, 24000), 1));
+
+test("wavBlob writes a mono 16-bit WAV header and the samples", async () => {
+  const { wavBlob } = await import("../src/pcm.js");
+  const blob = wavBlob([Int16Array.of(1, -2), Int16Array.of(3)], 24000);
+  const v = new DataView(await blob.arrayBuffer());
+  assert.equal(blob.size, 44 + 6);
+  assert.equal(String.fromCharCode(v.getUint8(0), v.getUint8(1), v.getUint8(2), v.getUint8(3)), "RIFF");
+  assert.equal(v.getUint32(24, true), 24000); assert.equal(v.getUint32(40, true), 6);
+  assert.deepEqual([v.getInt16(44, true), v.getInt16(46, true), v.getInt16(48, true)], [1, -2, 3]);
+});

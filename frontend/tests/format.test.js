@@ -2,8 +2,12 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { fmtMs, fmtSeconds, fmtRtf, fmtTtfa, granularityNote, NOT_AVAILABLE } from "../src/format.js";
 
-test("numbers display unchanged", () => {
-  assert.equal(fmtMs(123.456), "123.456 ms");
+test("numbers display with at most two decimals", () => {
+  assert.equal(fmtMs(132.447083), "132.45 ms");
+  assert.equal(fmtSeconds(30.812879818594105), "30.81 s");
+  assert.equal(fmtRtf(0.03382912188464), "0.03");
+  assert.equal(fmtMs(0.000625), "0 ms");
+  assert.equal(fmtMs(123.456), "123.46 ms");
   assert.equal(fmtMs(120), "120 ms");
   assert.equal(fmtSeconds(2.5), "2.5 s");
   assert.equal(fmtRtf(0.31), "0.31");

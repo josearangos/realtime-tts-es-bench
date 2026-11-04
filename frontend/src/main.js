@@ -2,9 +2,10 @@
 import { getEngines, refreshEngines, getCorpus, BackendUnreachable, BackendError } from "./api.js";
 import { createPlayer } from "./player.js";
 import { ComparisonSession } from "./session.js";
-import { engineOptionModel, limitModel, panelModel } from "./view-model.js";
+import { engineOptionModel, limitModel, panelModel, comparisonModel } from "./view-model.js";
 import { filterCorpus, campaigns, activate } from "./corpus.js";
-import { h, renderBanner, renderEngines, renderPanels, renderCorpus } from "./view.js";
+import { wavBlob } from "./pcm.js";
+import { h, renderBanner, renderEngines, renderPanels, renderCorpus, renderComparison } from "./view.js";
 
 const state = {
   baseUrl: "http://127.0.0.1:8000",
@@ -23,23 +24,33 @@ const refreshBtn = h("button", { type: "button", onclick: () => load(true) }, "R
 const enginesEl = h("div", { id: "engines" });
 const textArea = h("textarea", { id: "text", rows: 4, lang: "es", placeholder: "Escriba el texto en español…", oninput: () => update() });
 const counter = h("div", { id: "counter", class: "counter" });
-const playBtn = h("button", { type: "button", id: "play", onclick: () => play() }, "Play");
+const playBtn = h("button", { type: "button", id: "play", class: "primary", onclick: () => play() }, "Play");
 const stopBtn = h("button", { type: "button", id: "stop", onclick: () => stop() }, "Stop");
 const panelsEl = h("div", { id: "panels", class: "panels" });
+const comparisonEl = h("div", { id: "comparison" });
 const corpusFilter = h("input", { type: "search", placeholder: "Filter corpus…", "aria-label": "Filter corpus", oninput: () => renderCorpusList() });
 const campaignSelect = h("select", { "aria-label": "Campaign", onchange: () => renderCorpusList() });
 const corpusList = h("ul", { class: "corpus-list" });
 
+const emptyResults = h("div", { class: "empty-results" },
+  h("p", { class: "empty-title" }, "Nothing has been played yet."),
+  h("p", {}, "Choose one or more engines, write or pick a sentence, and press Play. Engines run one after another so they never compete for CPU."));
+
 root.append(
-  h("h1", {}, "Real-time TTS tester"),
-  h("p", { class: "note" }, "A live-testing aid, not a benchmark: figures shown are interactive measurements."),
+  h("header", { class: "masthead" },
+    h("div", { class: "masthead-title" },
+      h("h1", {}, "Real-time TTS tester"),
+      h("p", { class: "note" }, "A live-testing aid, not a benchmark: figures shown are interactive measurements.")),
+    h("div", { class: "backend" }, h("label", {}, h("span", {}, "Backend URL"), backendInput), refreshBtn)),
   banner,
-  h("div", { class: "row" }, h("label", {}, "Backend URL ", backendInput), refreshBtn),
-  h("h2", {}, "Engines"), enginesEl,
-  h("h2", {}, "Text"), textArea, counter,
-  h("div", { class: "row" }, playBtn, stopBtn),
-  panelsEl,
-  h("details", {}, h("summary", {}, "Corpus sentences"), h("div", { class: "row" }, campaignSelect, corpusFilter), corpusList),
+  h("main", { class: "workbench" },
+    h("div", { class: "compose" },
+      h("section", { class: "block" },
+        h("h2", {}, "Text"), textArea,
+        h("div", { class: "compose-bar" }, counter, h("div", { class: "controls" }, stopBtn, playBtn))),
+      h("section", { class: "block" }, h("h2", {}, "Engines"), enginesEl),
+      h("details", { class: "block corpus" }, h("summary", {}, "Corpus sentences"), h("div", { class: "row" }, campaignSelect, corpusFilter), corpusList)),
+    h("section", { class: "results", "aria-label": "Results" }, h("h2", {}, "Results"), comparisonEl, panelsEl)),
 );
 
 function selectedEngines() { return state.engines.filter((e) => state.selected.has(e.name)); }
@@ -71,10 +82,18 @@ function update() {
 
 function renderSession() {
   const s = state.session;
-  if (!s) { panelsEl.replaceChildren(); return; }
+  if (!s) { panelsEl.replaceChildren(emptyResults); renderComparison(comparisonEl, null); return; }
+  renderComparison(comparisonEl, comparisonModel(s.panels));
   renderPanels(panelsEl, {
     models: s.panels.map((p, index) => ({ model: panelModel(p, engineMeta(p.engine)), index })),
     onReplay: (i) => s.replay(s.panels[i]),
+    onDownload: (i, rate) => {
+      const p = s.panels[i];
+      const url = URL.createObjectURL(wavBlob(p.chunks.map((c) => c.pcm), rate));
+      const a = h("a", { href: url, download: `${p.engine}-${p.voice || "voice"}.wav`.replace(/[^\w.-]+/g, "_") });
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    },
     onRetry: () => play(),
     onEnableAudio: async () => { await state.ctx?.resume(); renderSession(); },
   });

@@ -67,3 +67,14 @@ test("heard-after is labelled browser-side", () => {
   p.browser.sent_at = 10; p.browser.first_audio_scheduled_at = 60;
   assert.match(panelModel(p).heardAfter.label, /browser-side/);
 });
+
+test("comparison ranks lower-is-better, picks fastest start among real-time engines", async () => {
+  const { comparisonModel } = await import("../src/view-model.js");
+  const mk = (engine, ttfa, total, rtf) => { const p = new EnginePanel({ engine, voice: "v" }); p.state = "done"; p.summary = { ttfa_ms: ttfa, generation_ms: total, rtf }; return p; };
+  const m = comparisonModel([mk("a", 300, 900, 0.3), mk("b", 100, 5000, 1.4), mk("c", 200, 700, 0.1)]);
+  const ttfa = m.charts.find((c) => c.id === "ttfa");
+  assert.deepEqual(ttfa.bars.map((b) => b.engine), ["b", "c", "a"]);
+  assert.ok(ttfa.bars[0].best && !ttfa.bars[1].best);
+  assert.equal(m.verdict.engine, "c"); // b starts first but is slower than real time
+  assert.equal(comparisonModel([mk("a", 1, 1, 0.1)]), null);
+});
