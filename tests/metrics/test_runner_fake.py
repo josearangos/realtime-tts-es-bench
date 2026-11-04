@@ -17,10 +17,11 @@ def test_known_figures_chunk(make_adapter, voice, mini_corpus):
     m = ms[0]
     assert m.status == "ok"
     assert m.ttfa_ms == pytest.approx(200, rel=0.05)
-    assert m.generation_ms == pytest.approx(350, rel=0.05)
-    assert m.rtf == pytest.approx(0.35, rel=0.05)
+    # sleeps only overshoot, and three of them add up: allow 10% on the figures built from them
+    assert m.generation_ms == pytest.approx(350, rel=0.10)
+    assert m.rtf == pytest.approx(0.35, rel=0.10)
     assert m.audio_seconds == pytest.approx(1.0)
-    assert 1.0 / windows[1] == pytest.approx(1 / 0.35, rel=0.05)
+    assert 1.0 / windows[1] == pytest.approx(1 / 0.35, rel=0.10)
 
 
 def test_chunk_timings(make_adapter, voice, mini_corpus):
