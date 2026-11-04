@@ -8,6 +8,10 @@ Benchmark of real-time Spanish text-to-speech engines for call center use.
 
 Blind MOS / CMOS / SIM listening tests in a containerized Label Studio: `cp evaluation/.env.example evaluation/.env && make eval-up`. See [evaluation/README.md](evaluation/README.md) for operations and [docs/human-evaluation.md](docs/human-evaluation.md) for the protocol.
 
+[![Guía para evaluadores humanos en Label Studio (MOS, CMOS, SIM)](docs/assets/guia-etiquetado-label-studio.jpg)](docs/assets/guia-etiquetado-label-studio.mp4)
+
+Video explicativo en español (≈7 min, voz `valentina-phonon`, es-CO) que recorre Label Studio y explica en detalle qué debe hacer un etiquetador humano en cada proyecto: [ver el video](docs/assets/guia-etiquetado-label-studio.mp4). Nada se envió durante la grabación, así que no altera datos de evaluación.
+
 ## Frontend demo
 
 [![Frontend tour: one script, three engines](docs/assets/demo-peluditos.gif)](docs/assets/demo-peluditos.mp4)
