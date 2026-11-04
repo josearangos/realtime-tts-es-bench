@@ -34,7 +34,7 @@ Use a WebSocket client (for example `python -m websockets ws://localhost:8000/v1
 ```
 curl -s -D - -o out.wav -X POST localhost:8000/v1/synthesize \
   -H 'content-type: application/json' \
-  -d '{"engine":"piper","voice":"es_MX-claude-high","text":"Hola, ¿cómo está?"}'
+  -d '{"engine":"phonon","voice":"valentina-phono","text":"Hola, ¿cómo está?"}'
 ```
 
 Expected: a playable WAV; for a `none` engine the response header says streaming is unavailable and TTFA is `"not available"`.
