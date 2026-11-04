@@ -1,0 +1,2 @@
+Mismo guion (Laura, de Peluditos Seguritos), tres motores de voz en español: Phonon, Piper y Pocket TTS. Primer audio: 72.59 ms, 140.28 ms y 388.88 ms. Narra valentina-phonon (es-CO). 🐶
+Música: Sascha Ende, ende.app (CC BY 4.0)

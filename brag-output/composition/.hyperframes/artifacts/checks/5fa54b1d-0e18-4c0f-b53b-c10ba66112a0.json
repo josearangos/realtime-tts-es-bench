@@ -1,0 +1,873 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 8,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "duplicate_media_discovery_risk",
+        "severity": "warning",
+        "message": "Detected 2 matching img entries with the same source/start/duration.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Users/josearangos/Documents/Study/realtime-tts-es-bench/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Avoid duplicated media nodes that can be discovered twice during compilation."
+      },
+      {
+        "code": "timeline_track_too_dense",
+        "severity": "warning",
+        "message": "Track 0 has 5 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Users/josearangos/Documents/Study/realtime-tts-es-bench/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move coherent scene groups into separate .html files under compositions/ and mount them from the parent with data-composition-src so the timeline stays easier to inspect, revise, and validate."
+      },
+      {
+        "code": "timeline_track_too_dense",
+        "severity": "warning",
+        "message": "Track 2 has 4 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Users/josearangos/Documents/Study/realtime-tts-es-bench/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move coherent scene groups into separate .html files under compositions/ and mount them from the parent with data-composition-src so the timeline stays easier to inspect, revise, and validate."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s1\"> is a timeline element that contains nested <img id=\"i_idle\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s1",
+        "dataAttributes": {},
+        "sourceFile": "/Users/josearangos/Documents/Study/realtime-tts-es-bench/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s1\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s2\"> is a timeline element that contains nested <img id=\"i_sel\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s2",
+        "dataAttributes": {},
+        "sourceFile": "/Users/josearangos/Documents/Study/realtime-tts-es-bench/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s2\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s3\"> is a timeline element that contains nested <img id=\"i_play\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s3",
+        "dataAttributes": {},
+        "sourceFile": "/Users/josearangos/Documents/Study/realtime-tts-es-bench/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s3\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s4\"> is a timeline element that contains nested <img id=\"i_card\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s4",
+        "dataAttributes": {},
+        "sourceFile": "/Users/josearangos/Documents/Study/realtime-tts-es-bench/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s4\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"end\"> is a timeline element that contains nested <h1 id=\"e1\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#end",
+        "dataAttributes": {},
+        "sourceFile": "/Users/josearangos/Documents/Study/realtime-tts-es-bench/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"end\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 2,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "clip_media_fit",
+        "severity": "warning",
+        "message": "Audio \"sfx-click\" is 0.01s but its slot (data-duration) is 0.30s — the slot is shortened to the media length when rendered. Set data-duration to ~0.01s if that isn't intended.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "22",
+          "data-width": "1920",
+          "data-height": "1080"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0
+      },
+      {
+        "code": "clip_media_fit",
+        "severity": "warning",
+        "message": "Audio \"sfx-hit\" is 0.18s but its slot (data-duration) is 0.40s — the slot is shortened to the media length when rendered. Set data-duration to ~0.18s if that isn't intended.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "22",
+          "data-width": "1920",
+          "data-height": "1080"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0
+      }
+    ]
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 4,
+    "infoCount": 8,
+    "findings": [
+      {
+        "code": "escaped_container",
+        "severity": "warning",
+        "time": 1.222,
+        "selector": "#i_idle",
+        "message": "Positioned element renders far outside its offset parent — its coordinates were likely computed in a different frame (canvas/viewport pixels).",
+        "rect": {
+          "left": 36.06,
+          "top": -165.18,
+          "right": 3557.73,
+          "bottom": 2035.86,
+          "width": 3521.66,
+          "height": 2201.04
+        },
+        "containerSelector": "#s1",
+        "text": "",
+        "fixHint": "Compute left/top in the offset parent's frame (subtract its rect), or mark intentional placement with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_idle",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 36.06,
+          "y": -165.18,
+          "width": 3521.66,
+          "height": 2201.04
+        },
+        "firstSeen": 1.222,
+        "lastSeen": 3.667,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          1.222,
+          3.667
+        ]
+      },
+      {
+        "code": "escaped_container",
+        "severity": "warning",
+        "time": 6.111,
+        "selector": "#i_sel",
+        "message": "Positioned element renders far outside its offset parent — its coordinates were likely computed in a different frame (canvas/viewport pixels).",
+        "rect": {
+          "left": 225.6,
+          "top": -621.67,
+          "right": 4577.66,
+          "bottom": 2098.37,
+          "width": 4352.06,
+          "height": 2720.04
+        },
+        "containerSelector": "#s2",
+        "text": "",
+        "fixHint": "Compute left/top in the offset parent's frame (subtract its rect), or mark intentional placement with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_sel",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 225.6,
+          "y": -621.67,
+          "width": 4352.06,
+          "height": 2720.04
+        },
+        "firstSeen": 6.111,
+        "lastSeen": 8.556,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          6.111,
+          8.556
+        ]
+      },
+      {
+        "code": "escaped_container",
+        "severity": "warning",
+        "time": 11,
+        "selector": "#i_play",
+        "message": "Positioned element renders far outside its offset parent — its coordinates were likely computed in a different frame (canvas/viewport pixels).",
+        "rect": {
+          "left": -187.68,
+          "top": -389.79,
+          "right": 3255.27,
+          "bottom": 1762.05,
+          "width": 3442.94,
+          "height": 2151.84
+        },
+        "containerSelector": "#s3",
+        "text": "",
+        "fixHint": "Compute left/top in the offset parent's frame (subtract its rect), or mark intentional placement with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_play",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -187.68,
+          "y": -389.79,
+          "width": 3442.94,
+          "height": 2151.84
+        },
+        "firstSeen": 11,
+        "lastSeen": 13.444,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          11,
+          13.444
+        ]
+      },
+      {
+        "code": "escaped_container",
+        "severity": "warning",
+        "time": 15.889,
+        "selector": "#i_card",
+        "message": "Positioned element renders far outside its offset parent — its coordinates were likely computed in a different frame (canvas/viewport pixels).",
+        "rect": {
+          "left": -721.91,
+          "top": -2376.98,
+          "right": 3314.69,
+          "bottom": 2836.97,
+          "width": 4036.61,
+          "height": 5213.95
+        },
+        "containerSelector": "#s4",
+        "text": "",
+        "fixHint": "Compute left/top in the offset parent's frame (subtract its rect), or mark intentional placement with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_card",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -721.91,
+          "y": -2376.98,
+          "width": 4036.61,
+          "height": 5213.95
+        },
+        "firstSeen": 15.889,
+        "lastSeen": 18.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          15.889,
+          18.333
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 1.222,
+        "selector": "#i_idle",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 36.06,
+          "top": -165.18,
+          "right": 3557.73,
+          "bottom": 2035.86,
+          "width": 3521.66,
+          "height": 2201.04
+        },
+        "containerSelector": "#s1",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 1637.73,
+          "top": 165.18,
+          "bottom": 955.86
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_idle",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 36.06,
+          "y": -165.18,
+          "width": 3521.66,
+          "height": 2201.04
+        },
+        "firstSeen": 1.222,
+        "lastSeen": 3.667,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          1.222,
+          3.667
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 3.667,
+        "selector": "#i_typed",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -5.18,
+          "top": -463.63,
+          "right": 5714.31,
+          "bottom": 3111.05,
+          "width": 5719.49,
+          "height": 3574.68
+        },
+        "containerSelector": "#s1",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "left": 5.18,
+          "right": 3794.31,
+          "top": 463.63,
+          "bottom": 2031.05
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_typed",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -5.18,
+          "y": -463.63,
+          "width": 5719.49,
+          "height": 3574.68
+        },
+        "firstSeen": 3.667,
+        "lastSeen": 3.667,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.667
+        ]
+      },
+      {
+        "code": "escaped_container",
+        "severity": "info",
+        "time": 3.667,
+        "selector": "#i_typed",
+        "message": "Positioned element renders far outside its offset parent — its coordinates were likely computed in a different frame (canvas/viewport pixels).",
+        "rect": {
+          "left": -5.18,
+          "top": -463.63,
+          "right": 5714.31,
+          "bottom": 3111.05,
+          "width": 5719.49,
+          "height": 3574.68
+        },
+        "containerSelector": "#s1",
+        "text": "",
+        "fixHint": "Compute left/top in the offset parent's frame (subtract its rect), or mark intentional placement with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_typed",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -5.18,
+          "y": -463.63,
+          "width": 5719.49,
+          "height": 3574.68
+        },
+        "firstSeen": 3.667,
+        "lastSeen": 3.667,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          3.667
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 6.111,
+        "selector": "#i_sel",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 225.6,
+          "top": -621.67,
+          "right": 4577.66,
+          "bottom": 2098.37,
+          "width": 4352.06,
+          "height": 2720.04
+        },
+        "containerSelector": "#s2",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 2657.66,
+          "top": 621.67,
+          "bottom": 1018.37
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_sel",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 225.6,
+          "y": -621.67,
+          "width": 4352.06,
+          "height": 2720.04
+        },
+        "firstSeen": 6.111,
+        "lastSeen": 8.556,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          6.111,
+          8.556
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 11,
+        "selector": "#i_play",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -187.68,
+          "top": -389.79,
+          "right": 3255.27,
+          "bottom": 1762.05,
+          "width": 3442.94,
+          "height": 2151.84
+        },
+        "containerSelector": "#s3",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "left": 187.68,
+          "right": 1335.27,
+          "top": 389.79,
+          "bottom": 682.05
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_play",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -187.68,
+          "y": -389.79,
+          "width": 3442.94,
+          "height": 2151.84
+        },
+        "firstSeen": 11,
+        "lastSeen": 13.444,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          11,
+          13.444
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 13.444,
+        "selector": "#i_full",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -871.61,
+          "top": -450.82,
+          "right": 3035.78,
+          "bottom": 4596.23,
+          "width": 3907.39,
+          "height": 5047.05
+        },
+        "containerSelector": "#s3",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "left": 871.61,
+          "right": 1115.78,
+          "top": 450.82,
+          "bottom": 3516.23
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_full",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -871.61,
+          "y": -450.82,
+          "width": 3907.39,
+          "height": 5047.05
+        },
+        "firstSeen": 13.444,
+        "lastSeen": 13.444,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          13.444
+        ]
+      },
+      {
+        "code": "escaped_container",
+        "severity": "info",
+        "time": 13.444,
+        "selector": "#i_full",
+        "message": "Positioned element renders far outside its offset parent — its coordinates were likely computed in a different frame (canvas/viewport pixels).",
+        "rect": {
+          "left": -871.61,
+          "top": -450.82,
+          "right": 3035.78,
+          "bottom": 4596.23,
+          "width": 3907.39,
+          "height": 5047.05
+        },
+        "containerSelector": "#s3",
+        "text": "",
+        "fixHint": "Compute left/top in the offset parent's frame (subtract its rect), or mark intentional placement with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_full",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -871.61,
+          "y": -450.82,
+          "width": 3907.39,
+          "height": 5047.05
+        },
+        "firstSeen": 13.444,
+        "lastSeen": 13.444,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          13.444
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 15.889,
+        "selector": "#i_card",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -721.91,
+          "top": -2376.98,
+          "right": 3314.69,
+          "bottom": 2836.97,
+          "width": 4036.61,
+          "height": 5213.95
+        },
+        "containerSelector": "#s4",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "left": 721.91,
+          "right": 1394.69,
+          "top": 2376.98,
+          "bottom": 1756.97
+        },
+        "dataAttributes": {
+          "data-hf-render-id": "i_card",
+          "data-hf-authored-opacity": ""
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -721.91,
+          "y": -2376.98,
+          "width": 4036.61,
+          "height": 5213.95
+        },
+        "firstSeen": 15.889,
+        "lastSeen": 18.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          15.889,
+          18.333
+        ]
+      }
+    ],
+    "duration": 22,
+    "samples": [
+      1.222,
+      3.667,
+      6.111,
+      8.556,
+      11,
+      13.444,
+      15.889,
+      18.333,
+      20.778
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 12,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      1.222,
+      6.111,
+      11,
+      15.889,
+      20.778
+    ],
+    "checked": 7,
+    "passed": 7
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 2,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"Pruébalo tú.\" (2 words) is on screen 1.90 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "Pruébalo tú.",
+        "selector": "#e2",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 828.31,
+          "y": 604.64,
+          "width": 263.3800000000001,
+          "height": 73
+        },
+        "time": 20.102,
+        "words": 2,
+        "seconds": 1.902,
+        "floorSeconds": 2
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"phonon · valentina-phonon — es-CO\" (5 words) is on screen 1.36 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "phonon · valentina-phonon — es-CO",
+        "selector": "#e3",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 663,
+          "y": 699.5,
+          "width": 594,
+          "height": 40
+        },
+        "time": 20.641,
+        "words": 5,
+        "seconds": 1.363,
+        "floorSeconds": 2
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 176
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

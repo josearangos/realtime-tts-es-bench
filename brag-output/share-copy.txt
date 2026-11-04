@@ -1,0 +1,2 @@
+Probé mi tester de TTS en tiempo real en español y la narración del video la hace la propia app: valentina-phonon (es-CO). Primer audio en ~32 ms. 🎙️
+Música: Sascha Ende, ende.app (CC BY 4.0)
