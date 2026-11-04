@@ -1,0 +1,18 @@
+{
+ "annotators": {
+  "a01": {
+   "attention_failed": 0,
+   "attention_total": 0,
+   "flagged": false,
+   "n_annotations": 1,
+   "reasons": [],
+   "repeat_mad": null,
+   "repeat_pairs": 0,
+   "repeat_within_1": null
+  }
+ },
+ "thresholds": {
+  "max_failed_checks": 1,
+  "repeat_within_1_min": 0.7
+ }
+}

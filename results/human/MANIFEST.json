@@ -1,0 +1,33 @@
+{
+ "batch_id": "b-bd4f19ed75",
+ "command": "python -m tts_bench.evaluation export --out results/human",
+ "config_sha256": "afda95c703fc31ccd58d4ae531bae4e918dc8240f5afbdace2a1017fa8b56718",
+ "corpus_sha256": "e4fb3b0af339b63f725652dfffd2a2080ce2ec75c36fd7f2425d6915cf4f36a4",
+ "corpus_version": "1.0.0",
+ "counts": {
+  "attention": 15,
+  "cmos": 120,
+  "mos": 120,
+  "repeats": 30,
+  "sim": 60
+ },
+ "environment": {
+  "label_studio": "1.23.2",
+  "numpy": "2.4.6",
+  "os": "Darwin 25.2.0",
+  "python": "3.11.13"
+ },
+ "files": {
+  "annotations.csv": "c8df775b3bf36c590f615da7544725c57e0a0f60798ce451c22af8f93f300b00",
+  "annotations.jsonl": "4a856d35c4f3bfa5a1938277513e1e792f3f4fbdf1a970fb4309b30fc24beaad",
+  "quality.json": "2eb52a137cbb71fcaf410c8445bd6bbe29aa8da297283544cae45ffe901aae40"
+ },
+ "loudness": {
+  "method": "rms",
+  "peak_limit_dbfs": -1.0,
+  "rms_dbfs": -23.0
+ },
+ "rows": 1,
+ "scale_hash": "9c6f673f91bd2909a476baeae4dc5f4527353acf85d8ddd86ee7b5f4d1fcc09c",
+ "seed": 20261104
+}

@@ -1,0 +1,2 @@
+batch_id,project,item_id,annotator_id,role,repeat_of,engine,voice,accent,cloned,engine_a,voice_a,engine_b,voice_b,sentence_id,corpus_version,scale_hash,ls_version,naturalidad,pronunciacion,prosodia,cmos,sim,lead_time_s,created_at
+b-bd4f19ed75,cmos,59780b797422,a01,test,,,,,,pocket_tts,valentina-pocket,pocket_tts,emiliano-pocket,CLO-007,1.0.0,9c6f673f91bd2909a476baeae4dc5f4527353acf85d8ddd86ee7b5f4d1fcc09c,1.23.2,,,,-3,,53.62,2026-11-04T21:24:58.134702Z
