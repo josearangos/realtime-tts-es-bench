@@ -5,7 +5,7 @@ A local HTTP/WebSocket service that exposes every registered engine through one 
 ## Install and start
 
 ```bash
-.venv-core/bin/pip install -e ".[dev,backend]"        # fastapi, uvicorn (+ httpx for tests)
+.venv-core/bin/pip install -e ".[dev,backend]"        # fastapi, uvicorn, websockets (+ httpx for tests)
 .venv-core/bin/python -m tts_bench.backend serve      # http://127.0.0.1:8000
 ```
 
@@ -82,6 +82,11 @@ Voices come from `LocalVoiceLibrary`, resolved with `use="internal_benchmarking"
 ## Request log
 
 `output/backend/requests.jsonl` (git-ignored, rotated at 5 MiB, 3 files kept): one JSON line per request with `ts`, `request_id`, `engine`, `engine_version`, `model_id`, `voice`, `text_chars`, `text_sha256`, `status` (`ok`, `failed`, `invalid`, `cancelled`, `rejected`), `error`, `summary`, `concurrent_engines`. The text itself only with `--log-text`; never audio.
+
+## Browser access and corpus (feature 008)
+
+- `GET /v1/corpus`: read-only list of the `main` corpus sentences (`id`, `text` as spoken form, `campaign`, `scenario`, `tags`) plus `corpus_version`; never `cloning.jsonl`. 503 `corpus_unavailable` if the corpus is missing or malformed.
+- CORS: `cors_origins` in `backend.toml` or `TTS_BACKEND_CORS_ORIGINS` (comma separated). Default `http://127.0.0.1:5173` and `http://localhost:5173`; never `*`; empty disables browser access. The WebSocket also rejects a browser `Origin` that is not allowed; requests without `Origin` (curl, tests) are accepted. The page itself is described in [frontend.md](frontend.md).
 
 ## Deviations
 

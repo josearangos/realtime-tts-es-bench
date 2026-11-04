@@ -15,7 +15,7 @@ pocket = ["pocket-tts"]
 piper = ["piper-tts"]
 asr = ["faster-whisper"]
 speaker = ["speechbrain", "torchaudio"]
-backend = ["fastapi", "uvicorn"]
+backend = ["fastapi", "uvicorn", "websockets"]
 dev = ["pytest", "httpx"]
 
 [tool.setuptools.packages.find]

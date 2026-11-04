@@ -12,9 +12,11 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI, Request, WebSocket
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 from starlette.websockets import WebSocketDisconnect, WebSocketState
 
+from ..corpus import loader as corpus_loader
 from ..voices.library import LocalVoiceLibrary
 from . import catalog as catalog_mod
 from .config import BackendConfig
@@ -80,6 +82,11 @@ def create_app(config: BackendConfig | None = None, supervisors: dict | None = N
     app.state.supervisors = supervisors
     app.state.catalog = catalog
     app.state.request_log = request_log
+
+    allowed_origins = [o for o in config.cors_origins if o and o != "*"]
+    if allowed_origins:
+        app.add_middleware(CORSMiddleware, allow_origins=allowed_origins, allow_methods=["GET", "POST"],
+                           allow_headers=["content-type"], allow_credentials=False)
 
     @app.exception_handler(BackendError)
     async def _backend_error(_request, exc: BackendError):
@@ -202,6 +209,20 @@ def create_app(config: BackendConfig | None = None, supervisors: dict | None = N
         return {"status": "ok", "version": _version(),
                 "limits": {"max_chars": config.max_chars, "queue_waiting": config.queue_waiting}}
 
+    @app.get("/v1/corpus")
+    async def corpus():
+        corpus_dir = config.repo_root / "corpus"
+        try:
+            version = corpus_loader.read_version(corpus_dir)
+            sentences = corpus_loader.read_sentences(corpus_dir / corpus_loader.SENTENCES_FILE)
+        except (corpus_loader.CorpusError, OSError):
+            return JSONResponse({"error": "corpus_unavailable", "message": "The corpus is not available."},
+                                status_code=503)
+        items = [{"id": s.id, "text": s.speak_text, "campaign": s.campaign.value,
+                  "scenario": s.scenario.value, "tags": [t.value for t in s.tags]}
+                 for s in sentences if s.subset.value == "main"]
+        return {"corpus_version": version.version, "count": len(items), "sentences": items}
+
     @app.get("/v1/engines")
     async def list_engines():
         names = await asyncio.to_thread(catalog.engines)
@@ -237,6 +258,13 @@ def create_app(config: BackendConfig | None = None, supervisors: dict | None = N
     @app.websocket("/v1/ws/synthesize")
     async def ws_synthesize(ws: WebSocket):
         await ws.accept()
+        origin = ws.headers.get("origin")
+        if origin is not None and origin.rstrip("/") not in allowed_origins:
+            # Browsers do not apply CORS to WebSockets, so the Origin is checked here.
+            await ws.send_json({"type": "error", "error": "bad_request",
+                                "message": "This browser origin is not allowed to use the backend."})
+            await ws.close()
+            return
         v = None
         payload = None
         closed = False

@@ -17,6 +17,15 @@ DEFAULT_VENVS = {
 }
 
 
+DEFAULT_CORS_ORIGINS = ("http://127.0.0.1:5173", "http://localhost:5173")
+
+
+def _origins(value) -> list[str]:
+    """Normalize a comma separated string or a list; never keeps a wildcard."""
+    items = value.split(",") if isinstance(value, str) else list(value or [])
+    return [o.strip().rstrip("/") for o in items if isinstance(o, str) and o.strip() and o.strip() != "*"]
+
+
 @dataclass
 class BackendConfig:
     host: str = "127.0.0.1"
@@ -30,6 +39,8 @@ class BackendConfig:
     log_path: str = "output/backend/requests.jsonl"
     log_max_bytes: int = 5 * 1024 * 1024
     log_keep: int = 3
+    # Browser origins allowed to call the gateway (CORS and WebSocket Origin). Empty disables browser access.
+    cors_origins: list[str] = field(default_factory=lambda: list(DEFAULT_CORS_ORIGINS))
     repo_root: Path = field(default_factory=lambda: REPO_ROOT)
     venvs: dict[str, str] = field(default_factory=dict)
     python_overrides: dict[str, str] = field(default_factory=dict)  # engine -> interpreter (tests)
@@ -46,9 +57,14 @@ class BackendConfig:
                 if key in data:
                     setattr(cfg, key, data[key])
             cfg.venvs = dict(data.get("venvs", {}))
+            if "cors_origins" in data:
+                cfg.cors_origins = _origins(data["cors_origins"])
         env = os.environ.get("TTS_BACKEND_MAX_CHARS")
         if env:
             cfg.max_chars = int(env)
+        env_cors = os.environ.get("TTS_BACKEND_CORS_ORIGINS")
+        if env_cors is not None:
+            cfg.cors_origins = _origins(env_cors)
         return cfg
 
     @property

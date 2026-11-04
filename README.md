@@ -36,10 +36,12 @@ python3.11 -m venv .venv-spk
 
 ## Real-time backend
 
-The backend gateway needs `fastapi` and `uvicorn` (optional extra) and `httpx` for its tests. Install them into `.venv-core`:
+The backend gateway needs `fastapi`, `uvicorn` and `websockets` (the `backend` extra) and `httpx` for its tests. Install them into `.venv-core`:
 
 ```bash
 .venv-core/bin/pip install -e ".[dev,backend]"
+# if .venv-core has no pip:
+uv pip install --python .venv-core/bin/python -e ".[dev,backend]"
 ```
 
 Start it with `.venv-core/bin/python -m tts_bench.backend serve` (http://127.0.0.1:8000; `/v1/health`, `/v1/engines`, `WS /v1/ws/synthesize`, `POST /v1/synthesize`). Tests need no weights: `.venv-core/bin/python -m pytest tests/backend -q`.
@@ -47,3 +49,16 @@ Start it with `.venv-core/bin/python -m tts_bench.backend serve` (http://127.0.0
 Engines keep their own virtual environments; the gateway starts one worker per engine in that engine's venv (see `docs/backend.md`).
 
 See [docs/backend.md](docs/backend.md) for the real-time backend (endpoints, metric definitions, limits).
+
+## Frontend
+
+A static page for live testing of the real-time backend: type Spanish text, hear it stream, compare engines one at a time and read the backend's latency figures. It is a live-testing aid, not a benchmark; the numbers it shows are interactive measurements. No build step and no external network.
+
+```bash
+.venv-core/bin/python -m tts_bench.backend serve                          # terminal 1
+python -m http.server 5173 --bind 127.0.0.1 --directory frontend          # terminal 2
+```
+
+Open http://127.0.0.1:5173 in Chrome, Safari or Firefox. The backend must be running first; the page's Backend URL field defaults to `http://127.0.0.1:8000`. The page's origin is allowed by the backend's CORS setting (default `http://127.0.0.1:5173` and `http://localhost:5173`; change it with `TTS_BACKEND_CORS_ORIGINS` or `cors_origins` in `backend.toml` if you use another port or host).
+
+Frontend tests (Node 20+, no install step): `node --test frontend/tests/` and, with the fake engine, `.venv-core/bin/python` available, `node frontend/tests/e2e-fake-engine.mjs`. See [docs/frontend.md](docs/frontend.md).
